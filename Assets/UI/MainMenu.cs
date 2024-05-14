@@ -15,16 +15,12 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private InputActionReference _esc;
     private GameObject _optionsMenu;
-    public Button audioButton;
-    public Button germanAudioButton;
-    public Button optionsButton;
+    public GameObject mainMenuButtons;
+    public Slider masterSlider;
     public Button startButton;
-    public Button germanStartButton;
     public bool controllerActive;
     public bool mouseActive;
     public bool keyboardActive;
-    public GameObject germanButtons;
-    public GameObject englishButtons;
     public EventReference musicEventReference;
     public EventInstance musicEventInstance;
     
@@ -46,12 +42,12 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        musicEventInstance = RuntimeManager.CreateInstance(musicEventReference);
+        /*musicEventInstance = RuntimeManager.CreateInstance(musicEventReference);
         musicEventInstance.start();
 
         RuntimeManager.CreateInstance("event:/GameState").start();
         RuntimeManager.CreateInstance("event:/GameState").start();
-        
+        */
         Cursor.SetCursor(cursorTex, Vector2.zero, CursorMode.ForceSoftware);
         _optionsMenu = GameObject.Find("OptionsMenu");
         _optionsMenu.SetActive(false);
@@ -60,17 +56,6 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerPrefs.GetInt("Language") == 0)
-        {
-            germanButtons.SetActive(false);
-            englishButtons.SetActive(true);
-        }
-        else if (PlayerPrefs.GetInt("Language") == 1)
-        {
-            englishButtons.SetActive(false);
-            germanButtons.SetActive(true);
-        }
-        
         if (!controllerActive && Gamepad.current != null && (Gamepad.current.leftStick.ReadValue() != Vector2.zero || Gamepad.current.rightStick.ReadValue() != Vector2.zero))
         {
             keyboardActive = false;
@@ -130,14 +115,7 @@ public class MainMenu : MonoBehaviour
     {
         if (Cursor.visible)
         {
-            if (PlayerPrefs.GetInt("Language") == 0)
-            {
-                if (startButton != null){ startButton.Select(); }
-            }
-            else if (PlayerPrefs.GetInt("Language") == 1)
-            {
-                if (germanStartButton != null){ germanStartButton.Select(); }
-            }
+            if (startButton != null){ startButton.Select(); }
             
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -165,15 +143,12 @@ public class MainMenu : MonoBehaviour
         
         if (_optionsMenu.activeSelf && !Cursor.visible)
         {
-            if (PlayerPrefs.GetInt("Language") == 0)
-            {
-                audioButton.Select();
-            }
-            else if (PlayerPrefs.GetInt("Language") == 1)
-            {
-                germanAudioButton.Select();
-            }
-            
+            mainMenuButtons.SetActive(false);
+            masterSlider.Select();
+        }
+        else if (!_optionsMenu.activeSelf && !Cursor.visible)
+        {
+            mainMenuButtons.SetActive(true);
         }
     }
 
