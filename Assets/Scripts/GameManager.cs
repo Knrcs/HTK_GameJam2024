@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
   [Header("Pause")] 
   public bool paused;
 
+  [Header("DinerTables")] 
+  public bool table01 = false;
+  public bool table02 = false;
+  public bool table03 = false;
+
 
   private void Awake()
   {
@@ -70,4 +75,6 @@ public class GameManager : MonoBehaviour
     Cursor.lockState = CursorLockMode.Locked;
     _playerInput.SwitchCurrentActionMap("Player");
   }
+  
+  
 }
