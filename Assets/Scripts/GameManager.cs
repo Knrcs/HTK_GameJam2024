@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
   {
     ShowInteractUI(false);
   }
-
+  
   public void ShowInteractUI(bool show)
   {
     _interactUI.SetActive(show);
@@ -47,19 +48,15 @@ public class GameManager : MonoBehaviour
     
     _score.text = score.ToString();
   }
-
+  
   public void PauseGame()
   {
-    Time.timeScale = 0;
-    Cursor.lockState = CursorLockMode.Confined;
     paused = true;
     _playerInput.SwitchCurrentActionMap("UI");
   }
   
   public void ResumeGame()
   {
-    Time.timeScale = 1;
-    Cursor.lockState = CursorLockMode.Locked;
     paused = false;
     _playerInput.SwitchCurrentActionMap("Player");
   }

@@ -1,0 +1,242 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using FMOD.Studio;
+using FMODUnity;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
+
+public class PauseMenu : MonoBehaviour
+{ 
+    [SerializeField] private InputActionReference _esc1;
+    [SerializeField] private InputActionReference _esc2;
+    [SerializeField] private GameObject _content;
+
+    public PlayerInput player;
+    public bool isPaused;
+    
+    public bool controllerActive;
+    public bool mouseActive;
+    public bool keyboardActive;
+    
+    [Header("Buttons")]
+    public Button startButton;
+    public Slider masterSlider;
+    
+    [Header("Pause Menu")] 
+    public GameObject pauseMenu;
+    public GameObject optionsMenu;
+    
+    private InputAction _openClosePauseMenu;
+    private float _idleTime = 0f;
+    private float _cursorHideDelay = 3f;
+    
+    private void Start()
+    {
+        isPaused = false;
+        
+        if (pauseMenu.activeSelf)
+        {
+            optionsMenu.SetActive(false);
+            pauseMenu.SetActive(false);
+        }
+    }
+    
+    
+    
+    private void OnEnable()
+    {
+        if (gameObject.activeInHierarchy)
+        {
+            _esc1.action.performed += PerformEsc;
+            _esc2.action.performed += PerformEsc;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (gameObject.activeInHierarchy)
+        {
+            _esc1.action.performed -= PerformEsc;
+            _esc2.action.performed -= PerformEsc;
+        }
+    }
+
+    private void Update()
+    {
+        if (isPaused)
+        {
+            if (!controllerActive && Gamepad.current != null && (Gamepad.current.leftStick.ReadValue() != Vector2.zero || Gamepad.current.rightStick.ReadValue() != Vector2.zero))
+            {
+                keyboardActive = false;
+                mouseActive = false;
+                controllerActive = true;
+            }
+
+            if (!mouseActive && Mouse.current != null && Mouse.current.delta.ReadValue() != Vector2.zero)
+            {
+                keyboardActive = false;
+                mouseActive = true;
+                controllerActive = false;
+            }
+
+            if (!keyboardActive && Keyboard.current != null && (Keyboard.current.anyKey.isPressed))
+            {
+                keyboardActive = true;
+                mouseActive = false;
+                controllerActive = false;
+            }
+        
+            if (mouseActive)
+            {
+                ShowCursor();
+                _idleTime = 0f;
+            }
+            else
+            {
+                _idleTime += Time.unscaledDeltaTime;
+                if (_idleTime >= _cursorHideDelay) 
+                {
+                    HideCursor();
+                }
+            }
+
+            if (keyboardActive || controllerActive)
+            {
+                HideCursor();
+            }
+        }
+        
+    }
+
+    private void ShowCursor()
+    {
+        if (!Cursor.visible)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    private void HideCursor()
+    {
+        if (Cursor.visible)
+        {
+            if (optionsMenu.activeSelf)
+            {
+                masterSlider.Select();
+            }
+            else if (pauseMenu.activeSelf)
+            {
+                startButton.Select();
+            }
+            
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+    
+    public void NoButtonSelect()
+    {
+        if (Cursor.visible)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+        
+    }
+    
+    public void StartGame()
+    { 
+        // Check if the PauseMenu instance is still valid
+        if (this != null)
+        {
+            isPaused = !isPaused;
+            
+            pauseMenu?.SetActive(isPaused);
+
+            if (isPaused)
+            {
+                _content.SetActive(false);
+                FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Pause", 1);
+                player.SwitchCurrentActionMap("UI");
+            }
+            else
+            {
+                _content.SetActive(true);
+                FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Pause", 0);
+                player.SwitchCurrentActionMap("Player");
+            }
+            
+            Time.timeScale = isPaused ? 0f : 1f; 
+        }
+    }
+    
+    private void PerformEsc(InputAction.CallbackContext obj)
+    {
+        StartGame();  
+    }
+    
+    public void OpenCloseOptions()
+    {
+        if (isPaused)
+        {
+           optionsMenu.SetActive(optionsMenu.activeSelf ? false : true);
+           pauseMenu.SetActive(pauseMenu.activeSelf ? false : true);
+        }
+
+        if (!mouseActive)
+        {
+            if (optionsMenu.activeSelf)
+            {
+                masterSlider.Select();
+            }
+            else if (pauseMenu.activeSelf)
+            {
+                startButton.Select();
+            }
+        }
+    }
+
+    public void QuitGame()
+    {
+        //GameManager.instance.musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Pause", 0);
+        StartCoroutine(MainMenuCoroutine());
+    }
+
+    public void QuitToDesktop()
+    {
+        Application.Quit();
+    }
+
+    private IEnumerator MainMenuCoroutine()
+    {
+        // Check if the PauseMenu instance is still valid
+        if (this != null)
+        {
+            Time.timeScale = 1f;
+            GameManager gameManager = GetComponentInParent<GameManager>();
+
+            /*if (gameManager != null)
+            { 
+                gameManager.musicEventInstance.stop(STOP_MODE.IMMEDIATE);
+            }*/
+
+            if (player != null)
+            {
+                player.SwitchCurrentActionMap("MainMenu");
+            }
+
+            yield return new WaitForSeconds(0.1f);
+
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
+}
