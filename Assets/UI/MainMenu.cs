@@ -115,7 +115,15 @@ public class MainMenu : MonoBehaviour
     {
         if (Cursor.visible)
         {
-            if (startButton != null){ startButton.Select(); }
+            if (_optionsMenu.activeSelf == false)
+            {
+                startButton.Select();
+            }
+            
+            if (_optionsMenu.activeSelf)
+            {
+                masterSlider.Select();
+            }
             
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -141,14 +149,24 @@ public class MainMenu : MonoBehaviour
     {
         _optionsMenu.SetActive(_optionsMenu.activeSelf ? false : true);
         
-        if (_optionsMenu.activeSelf && !Cursor.visible)
+        if (_optionsMenu.activeSelf)
         {
             mainMenuButtons.SetActive(false);
-            masterSlider.Select();
+            
+            if (!Cursor.visible)
+            {
+                masterSlider.Select();
+            }
         }
-        else if (!_optionsMenu.activeSelf && !Cursor.visible)
+        
+        if (!_optionsMenu.activeSelf)
         {
             mainMenuButtons.SetActive(true);
+
+            if (!Cursor.visible)
+            {
+                startButton.Select();
+            }
         }
     }
 
