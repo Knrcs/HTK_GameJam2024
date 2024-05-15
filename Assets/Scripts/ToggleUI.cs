@@ -8,10 +8,11 @@ public class ToggleUI : MonoBehaviour
 {
     public GameObject _UI;
     public GameManager gameManager;
+    public PlayerControler _PlayerControler;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !_PlayerControler.handSlot)
         {
             _UI.SetActive(true);
             gameManager.OpenMenu();

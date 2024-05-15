@@ -9,6 +9,7 @@ TagManager:
   - Table03
   - Gamemanager
   - Exit
+  - Interactable
   layers:
   - Default
   - TransparentFX
