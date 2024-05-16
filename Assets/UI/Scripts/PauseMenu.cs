@@ -192,7 +192,10 @@ public class PauseMenu : MonoBehaviour
     
     private void PerformEsc(InputAction.CallbackContext obj)
     {
-        StartGame();  
+        if (GameManager.instance.isAllowedToPause)
+        {
+            StartGame(); 
+        }
     }
     
     public void OpenCloseOptions()

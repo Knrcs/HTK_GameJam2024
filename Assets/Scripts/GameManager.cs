@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
   public int scorePoints;
   public int customerServed;
   public int highScore;
+
+  public bool isAllowedToPause;
   
 
 
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
   private void Start()
   {
     ShowInteractUI(false);
+    isAllowedToPause = true;
   }
 
   private void Update()
@@ -57,9 +60,9 @@ public class GameManager : MonoBehaviour
 
   public void EndScreenValues()
   {
+    isAllowedToPause = false;
     _gameOverScreen.SetActive(true);
     _scoreTextEnd.text = scorePoints.ToString();
-    _highScoreText.text = highScore.ToString();
     _customerServedText.text = customerServed.ToString();
   }
   public void NewGame()

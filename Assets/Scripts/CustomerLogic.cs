@@ -79,7 +79,7 @@ public class CustomerLogic : MonoBehaviour
         exitPoint = GameObject.Find("ExitPoint");
         rngTable = Random.Range(1, 4);
         rngOrder = Random.Range(1, 12);
-        SelectTable(rngTable);
+        //SelectTable(rngTable);
         _questComplete = false;
         _waitingCustomer = true;
         _customerSpawner = GameObject.Find("CustomerSpawner").GetComponent<CustomerSpawner>();
@@ -89,6 +89,7 @@ public class CustomerLogic : MonoBehaviour
 
     private void FadeInOver() { _startMoving = true; }
 
+    /*
     private void SelectTable(int spots)
     {
         switch (spots)
@@ -105,6 +106,8 @@ public class CustomerLogic : MonoBehaviour
         }
         
     }
+    */
+
 
     private void Update()
     {
@@ -126,6 +129,32 @@ public class CustomerLogic : MonoBehaviour
     {
         if (_waitingCustomer)
         {
+            if (!_gameManager.table01)
+            {
+                _waitingCustomer = false;
+                _gameManager.table01 = true;
+                _tableAssigned = true;
+                moveSpots = GameObject.FindGameObjectWithTag("Table01");
+                customor.GetComponent<SpriteRenderer>().sortingOrder = 0;
+            }
+            else if (!_gameManager.table02)
+            {
+                _waitingCustomer = false;
+                _gameManager.table02 = true;
+                _tableAssigned = true;
+                moveSpots = GameObject.FindGameObjectWithTag("Table02");
+                customor.GetComponent<SpriteRenderer>().sortingOrder = -1;
+            }
+            else if (!_gameManager.table03)
+            {
+                _waitingCustomer = false;
+                _gameManager.table03 = true;
+                _tableAssigned = true;
+                moveSpots = GameObject.FindGameObjectWithTag("Table03");
+                customor.GetComponent<SpriteRenderer>().sortingOrder = -2;
+            }
+            
+            /*
             Debug.Log("Customer looking for space");
             
             if (rngTable == 1 && !_gameManager.table01)
@@ -156,6 +185,7 @@ public class CustomerLogic : MonoBehaviour
                 rngTable = Random.Range(1, 4);
                 SelectTable(rngTable);
             }
+            */
         }
 
         
@@ -187,7 +217,9 @@ public class CustomerLogic : MonoBehaviour
 
     private void SetOrderUI()
     {
+        Debug.Log(moveSpots);
         moveSpots.GetComponentInChildren<TextMeshProUGUI>().SetText(_currentSprite.name);
+        
         if (moveSpots.name == "CustomerSpot11")
         {
             _customerOrder = GameObject.Find("CustomerOrder1");
@@ -223,7 +255,7 @@ public class CustomerLogic : MonoBehaviour
             {
                 _dontScale = true;
                 
-                switch (rngTable)
+                /*switch (rngTable)
                 {
                     case 1:
                         _gameManager.table01 = false;
@@ -235,7 +267,20 @@ public class CustomerLogic : MonoBehaviour
                         _gameManager.table03 = false;
                         break;
                 
+                }*/
+                if (moveSpots.name == "CustomerSpot11")
+                {
+                    _gameManager.table01 = false;
                 }
+                else if (moveSpots.name == "CustomerSpot21")
+                {
+                    _gameManager.table02 = false;
+                }
+                else if (moveSpots.name == "CustomerSpot31")
+                {
+                    _gameManager.table03 = false;
+                }
+                
                 GetComponent<Animator>().Play("FadeOutAnimation");
             }
         }
