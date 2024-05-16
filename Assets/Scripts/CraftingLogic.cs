@@ -382,110 +382,125 @@ public class CraftingLogic : MonoBehaviour
 
     public void CraftThatBooty()
     {
-        if (_banana && _can && _raygun)
+        if (!_playerControler.handSlot)
         {
-            //TODO: Success Sound
-            pickThatBooty = true;
-            bananaCanRay = true;
-            resultSpriteObject.sprite = bananaCanRaySprite;
-            ClearCraftingTable();
-            LogItemCrafted("Banana Can Raygun");
-        }
-
-        if (_drill && _can && _raygun)
-        {
-            pickThatBooty = true;
-            drillCanRay = true;
-            resultSpriteObject.sprite = drillCanRaySprite;
-            ClearCraftingTable();
-            LogItemCrafted("Drill Can Raygun");
-        }
-
-        if (_drill && _gatlin && _shovel)
-        {
-            pickThatBooty = true;
-            drillGatlinShovel = true;
-            resultSpriteObject.sprite = drillGatlinShovelSprite;
-            ClearCraftingTable();
-            LogItemCrafted("Drill Gatlin Shovel");
-        }
-        if (_drill && _raygun && _shovel)
-        {
-            pickThatBooty = true;
-            drillRayShovel = true;
-            resultSpriteObject.sprite = drillRayShovelSprite;
-            ClearCraftingTable();
-            LogItemCrafted("Drill Gatlin Shovel");
-        }
-        if (_drill && _sniperBarrel && _spring && _toaster)
-        {
-            pickThatBooty = true;
-            drillToasterSniperSpring = true;
-            resultSpriteObject.sprite = drillToasterSniperSpringSprite;
-            ClearCraftingTable();
-            LogItemCrafted("Drill Toaster Sniper Spring");
-        }
-
-        if (_hairDryer && _can && _sniperBarrel && _spring)
-        {
-            pickThatBooty = true;
-            dryerCanSniperSpring = true;
-            resultSpriteObject.sprite = dryerCanSniperSpringSprite;
-            ClearCraftingTable();
-            LogItemCrafted("Dryer can Sniper Spring");
-        }
-
-        if (_hairDryer && _can && _spartula && _raygun)
-        {
-            pickThatBooty = true;
-            dryerCanRaySpartula = true;
-            resultSpriteObject.sprite = dryerCanRaySpartulaSprite;
-            ClearCraftingTable();
-            LogItemCrafted("Dryer Can Spartula Raygun");
-        }
-
-        if (_hairDryer && _gatlin && _shovel)
-        {
-            pickThatBooty = true;
-            dryerGatlinShovel = true;
-            resultSpriteObject.sprite = dryerGatlinShovelSprite;
-            ClearCraftingTable();
-            LogItemCrafted("Dryer Gatlin Shovel");  
-        }
-
-        if (_banana && _battery && _sniperBarrel)
-        {
-            pickThatBooty = true;
-            bananaBatterySniper = true;
-            resultSpriteObject.sprite = bananaBatterySniperSprite;
-            ClearCraftingTable();
-            LogItemCrafted("Banana Battery Sniper Rifle"); 
-        }
-        if (_banana && _battery && _sniperBarrel && _shovel)
-        {
-            pickThatBooty = true;
-            bananaBatterySniperShovel = true;
-            resultSpriteObject.sprite = bananaBatterySniperShovelSprite;
-            ClearCraftingTable();
-            LogItemCrafted("Banana Battery Sniper Rifle");  
-        }
-        if (_banana && _can && _gatlin)
-        {
-            pickThatBooty = true;
-            bananaCanGatlin = true;
-            resultSpriteObject.sprite = bananaCanGatlinSprite;
-            ClearCraftingTable();
-            LogItemCrafted("Banana Battery Sniper Rifle");
-        }
-        else
-        {
+            Debug.Log(_playerControler.handSlot);
             
-            //TODO: Fail Sound
-            ClearCraftingTable();
-            LogItemCrafted("Null");
+            if (_banana && _can && _raygun)
+            {
+                pickThatBooty = true;
+                bananaCanRay = true;
+                resultSpriteObject.sprite = bananaCanRaySprite;
+                ClearCraftingTable();
+                LogItemCrafted("Banana Can Raygun");
+                CraftingSuccessSound();
+            }
+            else if (_drill && _can && _raygun)
+            {
+                pickThatBooty = true;
+                drillCanRay = true;
+                resultSpriteObject.sprite = drillCanRaySprite;
+                ClearCraftingTable();
+                LogItemCrafted("Drill Can Raygun");
+                CraftingSuccessSound();
+            }
+            else if (_drill && _gatlin && _shovel)
+            {
+                pickThatBooty = true;
+                drillGatlinShovel = true;
+                resultSpriteObject.sprite = drillGatlinShovelSprite;
+                ClearCraftingTable();
+                LogItemCrafted("Drill Gatlin Shovel");
+                CraftingSuccessSound();
+            }
+            else if (_drill && _raygun && _shovel)
+            {
+                pickThatBooty = true;
+                drillRayShovel = true;
+                resultSpriteObject.sprite = drillRayShovelSprite;
+                ClearCraftingTable();
+                LogItemCrafted("Drill Gatlin Shovel");
+                CraftingSuccessSound();
+            }
+            else if (_drill && _sniperBarrel && _spring && _toaster)
+            {
+                pickThatBooty = true;
+                drillToasterSniperSpring = true;
+                resultSpriteObject.sprite = drillToasterSniperSpringSprite;
+                ClearCraftingTable();
+                LogItemCrafted("Drill Toaster Sniper Spring");
+                CraftingSuccessSound();
+            }
+            else if (_hairDryer && _can && _sniperBarrel && _spring)
+            {
+                pickThatBooty = true;
+                dryerCanSniperSpring = true;
+                resultSpriteObject.sprite = dryerCanSniperSpringSprite;
+                ClearCraftingTable();
+                LogItemCrafted("Dryer can Sniper Spring");
+                CraftingSuccessSound();
+            }
+            else if (_hairDryer && _can && _spartula && _raygun)
+            {
+                pickThatBooty = true;
+                dryerCanRaySpartula = true;
+                resultSpriteObject.sprite = dryerCanRaySpartulaSprite;
+                ClearCraftingTable();
+                LogItemCrafted("Dryer Can Spartula Raygun");
+                CraftingSuccessSound();
+            }
+            else if (_hairDryer && _gatlin && _shovel)
+            {
+                pickThatBooty = true;
+                dryerGatlinShovel = true;
+                resultSpriteObject.sprite = dryerGatlinShovelSprite;
+                ClearCraftingTable();
+                LogItemCrafted("Dryer Gatlin Shovel");
+                CraftingSuccessSound();
+            }
+            else if (_banana && _battery && _sniperBarrel)
+            {
+                pickThatBooty = true;
+                bananaBatterySniper = true;
+                resultSpriteObject.sprite = bananaBatterySniperSprite;
+                ClearCraftingTable();
+                LogItemCrafted("Banana Battery Sniper Rifle");
+                CraftingSuccessSound();
+            }
+            else if (_banana && _battery && _sniperBarrel && _shovel)
+            {
+                pickThatBooty = true;
+                bananaBatterySniperShovel = true;
+                resultSpriteObject.sprite = bananaBatterySniperShovelSprite;
+                ClearCraftingTable();
+                LogItemCrafted("Banana Battery Sniper Rifle");
+                CraftingSuccessSound();
+            }
+            else if (_banana && _can && _gatlin)
+            {
+                pickThatBooty = true;
+                bananaCanGatlin = true;
+                resultSpriteObject.sprite = bananaCanGatlinSprite;
+                ClearCraftingTable();
+                LogItemCrafted("Banana Battery Sniper Rifle");
+                CraftingSuccessSound();
+            }
+            else
+            {
+
+                GameManager.instance.PlayThisOneShot("event:/SFX/Other/DeletingItems");
+                
+                ClearCraftingTable();
+                LogItemCrafted("Null");
+            }
         }
     }
 
+    private void CraftingSuccessSound()
+    {
+        GameManager.instance.PlayThisOneShot("event:/SFX/Other/Crafting");
+    }
+    
     private void LogItemCrafted(string text)
     {
         Debug.Log("Item: " + text + " crafted!");

@@ -53,10 +53,13 @@ public class CustomerLogic : MonoBehaviour
     public Sprite dryerGatlinShovelSprite;
     public Sprite dryerCanSniperSpringSprite;
     public Sprite dryerCanRaySpartulaSprite;
+
+    public List<Sprite> characterSprites = new List<Sprite>();
     
 
     private void Start()
     {
+        GetComponent<SpriteRenderer>().sprite = characterSprites[Random.Range(0, characterSprites.Count)];
         _gameManager = GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<GameManager>();
         customor = this.GameObject();
         exitPoint = GameObject.Find("ExitPoint");
@@ -65,6 +68,7 @@ public class CustomerLogic : MonoBehaviour
         SelectTable(rngTable);
         _questComplete = false;
         _waitingCustomer = true;
+        
     }
     
 
@@ -137,6 +141,7 @@ public class CustomerLogic : MonoBehaviour
         if (_tableAssigned)
         {
             customor.transform.position = Vector2.MoveTowards(customor.transform.position, moveSpots.transform.position, moveSpeed);
+            
         }
     }
 

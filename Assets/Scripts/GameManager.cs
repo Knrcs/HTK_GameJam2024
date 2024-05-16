@@ -5,10 +5,12 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMOD.Studio;
+using FMODUnity;
 
 public class GameManager : MonoBehaviour
 {
-
+  
   [SerializeField] private PlayerInput _playerInput;
   public PlayerControler player;
   
@@ -73,5 +75,10 @@ public class GameManager : MonoBehaviour
     _playerInput.SwitchCurrentActionMap("Player");
   }
   
+  public void PlayThisOneShot(string oneShot)
+  {
+    RuntimeManager.PlayOneShot(oneShot);
+        
+  }
   
 }

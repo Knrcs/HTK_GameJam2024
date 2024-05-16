@@ -14,6 +14,11 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class PauseMenu : MonoBehaviour
 { 
+    public EventReference musicEventReference;
+    public EventReference atmoEventReference;
+    public EventInstance musicEventInstance;
+    public EventInstance atmoEventInstance;
+    
     [SerializeField] private InputActionReference _esc1;
     [SerializeField] private InputActionReference _esc2;
     [SerializeField] private GameObject _content;
@@ -46,6 +51,11 @@ public class PauseMenu : MonoBehaviour
             optionsMenu.SetActive(false);
             pauseMenu.SetActive(false);
         }
+        
+        musicEventInstance = RuntimeManager.CreateInstance(musicEventReference);
+        musicEventInstance.start();
+        atmoEventInstance = RuntimeManager.CreateInstance(atmoEventReference);
+        atmoEventInstance.start();
     }
     
     
@@ -164,11 +174,13 @@ public class PauseMenu : MonoBehaviour
             if (isPaused)
             {
                 _content.SetActive(false);
+                optionsMenu.SetActive(false);
                 FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Pause", 1);
                 player.SwitchCurrentActionMap("UI");
             }
             else
             {
+                optionsMenu.SetActive(false);
                 _content.SetActive(true);
                 FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Pause", 0);
                 player.SwitchCurrentActionMap("Player");
@@ -187,26 +199,35 @@ public class PauseMenu : MonoBehaviour
     {
         if (isPaused)
         {
-           optionsMenu.SetActive(optionsMenu.activeSelf ? false : true);
-           pauseMenu.SetActive(pauseMenu.activeSelf ? false : true);
-        }
+            if (!optionsMenu.activeSelf)
+            {
+                Debug.Log("Gets active");
+                optionsMenu.SetActive(true);
+                pauseMenu.SetActive(false);
 
-        if (!mouseActive)
-        {
-            if (optionsMenu.activeSelf)
-            {
-                masterSlider.Select();
+                if (!Cursor.visible)
+                {
+                    masterSlider.Select();
+                }
             }
-            else if (pauseMenu.activeSelf)
+            else
             {
-                startButton.Select();
+                Debug.Log("Gets Inactive");
+                optionsMenu.SetActive(false);
+                pauseMenu.SetActive(true);
+
+                if (!Cursor.visible)
+                {
+                    startButton.Select();
+                }
             }
         }
     }
 
     public void QuitGame()
     {
-        //GameManager.instance.musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        atmoEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Pause", 0);
         StartCoroutine(MainMenuCoroutine());
     }

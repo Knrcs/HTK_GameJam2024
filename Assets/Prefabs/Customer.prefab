@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0.612196, b: 0.1745283, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -132,6 +132,12 @@ MonoBehaviour:
   dryerGatlinShovelSprite: {fileID: 21300000, guid: c991c861d28ab454684e6210126699ab, type: 3}
   dryerCanSniperSpringSprite: {fileID: 21300000, guid: e1cf6c26a46664d46b67f265f7c70b08, type: 3}
   dryerCanRaySpartulaSprite: {fileID: 21300000, guid: bf8db131382e9944986bb9cd93a403ed, type: 3}
+  characterSprites:
+  - {fileID: 21300000, guid: 74e980c1f922de44f80b7add97b6a5cb, type: 3}
+  - {fileID: 21300000, guid: 268319e78e65b0546a276932f26e0caa, type: 3}
+  - {fileID: 21300000, guid: 268319e78e65b0546a276932f26e0caa, type: 3}
+  - {fileID: 21300000, guid: 268319e78e65b0546a276932f26e0caa, type: 3}
+  - {fileID: 21300000, guid: 268319e78e65b0546a276932f26e0caa, type: 3}
 --- !u!50 &3253022758131449648
 Rigidbody2D:
   serializedVersion: 4

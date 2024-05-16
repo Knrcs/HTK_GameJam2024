@@ -28,18 +28,17 @@ public class OptionsMenu : MonoBehaviour
     
     private void Awake()
     {
-        /*
+        
         _master = FMODUnity.RuntimeManager.GetBus("bus:/Master");
         _music = FMODUnity.RuntimeManager.GetBus("bus:/Master/Music");
         _sfx = FMODUnity.RuntimeManager.GetBus("bus:/Master/SFX");
         _ambience = FMODUnity.RuntimeManager.GetBus("bus:/Master/Ambience");
-        */
+        
     }
 
     private void Start()
     {
-        //StartCoroutine(StartSetSlider());
-        
+        StartCoroutine(StartSetSlider());
         optionsMenu.SetActive(false);
     }
 

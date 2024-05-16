@@ -14,7 +14,7 @@ using UnityEngine.InputSystem;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private InputActionReference _esc;
-    private GameObject _optionsMenu;
+    public GameObject optionsMenu;
     public GameObject mainMenuButtons;
     public Slider masterSlider;
     public Button startButton;
@@ -22,7 +22,9 @@ public class MainMenu : MonoBehaviour
     public bool mouseActive;
     public bool keyboardActive;
     public EventReference musicEventReference;
+    public EventReference atmoEventReference;
     public EventInstance musicEventInstance;
+    public EventInstance atmoEventInstance;
     
     private float _idleTime = 0f;
     private float _cursorHideDelay = 3f;
@@ -42,15 +44,16 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        /*musicEventInstance = RuntimeManager.CreateInstance(musicEventReference);
+        musicEventInstance = RuntimeManager.CreateInstance(musicEventReference);
         musicEventInstance.start();
+        atmoEventInstance = RuntimeManager.CreateInstance(atmoEventReference);
+        atmoEventInstance.start();
 
         RuntimeManager.CreateInstance("event:/GameState").start();
         RuntimeManager.CreateInstance("event:/GameState").start();
-        */
+        
         Cursor.SetCursor(cursorTex, Vector2.zero, CursorMode.ForceSoftware);
-        _optionsMenu = GameObject.Find("OptionsMenu");
-        _optionsMenu.SetActive(false);
+        optionsMenu.SetActive(false);
         HideCursor();
     }
 
@@ -115,12 +118,12 @@ public class MainMenu : MonoBehaviour
     {
         if (Cursor.visible)
         {
-            if (_optionsMenu.activeSelf == false)
+            if (optionsMenu.activeSelf == false)
             {
                 startButton.Select();
             }
             
-            if (_optionsMenu.activeSelf)
+            if (optionsMenu.activeSelf)
             {
                 masterSlider.Select();
             }
@@ -142,14 +145,15 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        atmoEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     
     public void OpenCloseOptions()
     {
-        _optionsMenu.SetActive(_optionsMenu.activeSelf ? false : true);
+        optionsMenu.SetActive(optionsMenu.activeSelf ? false : true);
         
-        if (_optionsMenu.activeSelf)
+        if (optionsMenu.activeSelf)
         {
             mainMenuButtons.SetActive(false);
             
@@ -159,7 +163,7 @@ public class MainMenu : MonoBehaviour
             }
         }
         
-        if (!_optionsMenu.activeSelf)
+        if (!optionsMenu.activeSelf)
         {
             mainMenuButtons.SetActive(true);
 
@@ -180,7 +184,7 @@ public class MainMenu : MonoBehaviour
 
     private void PerformEsc(InputAction.CallbackContext obj)
     {
-        if (_optionsMenu.activeSelf)
+        if (optionsMenu.activeSelf)
         {
             OpenCloseOptions();
         } 

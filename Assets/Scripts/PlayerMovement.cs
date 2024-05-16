@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private PlayerControls _inputAction;
     private Vector2 _movementInput;
+    private bool _atWall;
 
 
     private void Start()
@@ -32,16 +33,35 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody2D.velocity = _movementInput * runSpeed;
 
-        if (_rigidbody2D.velocity != _lastVelocity)
+        if (!_atWall)
         {
-            if (_rigidbody2D.velocity.y < 0 && transform.localScale.y < 3.0f)
+            if (_rigidbody2D.velocity != _lastVelocity)
             {
-                transform.localScale *= sizeMultiplier;
+                if (_rigidbody2D.velocity.y < 0 && transform.localScale.y < 2.55f)
+                {
+                    transform.localScale *= sizeMultiplier;
+                }
+                else if (_rigidbody2D.velocity.y > 0 && transform.localScale.y > 0.7f)
+                {
+                    transform.localScale /= sizeMultiplier;
+                }
             }
-            else if (_rigidbody2D.velocity.y > 0 && transform.localScale.y > 1.0f)
-            {
-                transform.localScale /= sizeMultiplier;
-            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            _atWall = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            _atWall = false;
         }
     }
 

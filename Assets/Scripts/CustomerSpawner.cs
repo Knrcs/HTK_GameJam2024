@@ -24,9 +24,9 @@ public class CustomerSpawner : MonoBehaviour
         spawnTimer -= Time.deltaTime;
 
 
-        if (spawnTimer <= 0)
+        if (spawnTimer <= 0 && transform.childCount < 3)
         {
-            Instantiate(customerPrefab);
+            Instantiate(customerPrefab, transform);
             spawnTimer = _spawnTimerDefault;
             if (_spawnTimerDefault !>= spawnTimerCap)
             {
