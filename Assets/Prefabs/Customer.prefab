@@ -105,7 +105,7 @@ MonoBehaviour:
   _gameManager: {fileID: 0}
   moveSpots: {fileID: 0}
   customerScore: {fileID: 0}
-  moveSpeed: 0.001
+  moveSpeed: 0.004
   _waitingCustomer: 0
   _tableAssigned: 0
   _waitingForOrder: 0
@@ -275,7 +275,15 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2228233578151498623, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
+      propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228233578151498623, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
       propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6766621799939323101}
+    - target: {fileID: 2228233578151498623, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
+      propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 6766621799939323101}
     - target: {fileID: 2228233578151498623, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
@@ -283,7 +291,15 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2228233578151498623, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
+      propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228233578151498623, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
       propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckOrder
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228233578151498623, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
+      propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: CheckOrder
       objectReference: {fileID: 0}
     - target: {fileID: 2228233578151498623, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
@@ -291,7 +307,15 @@ PrefabInstance:
       value: CustomerScore, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2228233578151498623, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
+      propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CustomerScore, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228233578151498623, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
       propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228233578151498623, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
+      propertyPath: interactAction.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3375080921331485474, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}

@@ -91,18 +91,21 @@ public class CraftingLogic : MonoBehaviour
                 _drill = _playerControler._drill;
                 _bodyPartUsed = true;
                 bodySpriteObject.sprite = drillSprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/Drill");
             }
             if(_playerControler._hairDryer)
             {       
                 _hairDryer = _playerControler._hairDryer;
                 _bodyPartUsed = true;
                 bodySpriteObject.sprite = dryerSprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/Hairdryer");
             }
             if (_playerControler._banana)
             {
                 _banana = _playerControler._banana;
                 _bodyPartUsed = true;
                 bodySpriteObject.sprite = bananaSprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/Banana");
             } 
         }
 
@@ -114,6 +117,7 @@ public class CraftingLogic : MonoBehaviour
                 _toaster = _playerControler._toaster;
                 _magazinPartUsed = true;
                 magazinSpriteObject.sprite = toasterSprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/Toaster");
             }
 
             if (_playerControler._can)
@@ -121,6 +125,7 @@ public class CraftingLogic : MonoBehaviour
                 _can = _playerControler._can;
                 _magazinPartUsed = true;
                 magazinSpriteObject.sprite = canSprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/Can");
             }
 
             if (_playerControler._battery)
@@ -128,6 +133,7 @@ public class CraftingLogic : MonoBehaviour
                 _battery = _playerControler._battery;
                 _magazinPartUsed = true;
                 magazinSpriteObject.sprite = batterySprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/Battery");
             }   
         }
 
@@ -139,6 +145,7 @@ public class CraftingLogic : MonoBehaviour
                 _raygun = _playerControler._raygun;
                 _barrelPartUsed = true;
                 barrelSpriteObject.sprite = raygunSprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/RayGun");
             }
 
             if (_playerControler._gatlin)
@@ -146,6 +153,7 @@ public class CraftingLogic : MonoBehaviour
                 _gatlin = _playerControler._gatlin;
                 _barrelPartUsed = true;
                 barrelSpriteObject.sprite = gatlinSprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/GatlingGun");
             }
 
             if (_playerControler._sniperBarrel)
@@ -153,6 +161,7 @@ public class CraftingLogic : MonoBehaviour
                 _sniperBarrel = _playerControler._sniperBarrel;
                 _barrelPartUsed = true;
                 barrelSpriteObject.sprite = sniperSprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/Sniper");
             }
         }
 
@@ -164,18 +173,21 @@ public class CraftingLogic : MonoBehaviour
                 _spartula = _playerControler._spartula;
                 _stockPartUsed = true;
                 stockSpriteObject.sprite = spartulaSprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/Spatula");
             }
             if (_playerControler._shovel)
             {
                 _shovel = _playerControler._shovel;
                 _stockPartUsed = true;
                 stockSpriteObject.sprite = shovelSprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/Shovel");
             }
             if (_playerControler._spring)
             {
                 _spring = _playerControler._spring;
                 _stockPartUsed = true;
                 stockSpriteObject.sprite = springSprite;
+                GameManager.instance.PlayThisOneShot("event:/SFX/Items/Spring");
             }   
         }
 

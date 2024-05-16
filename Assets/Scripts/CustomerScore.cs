@@ -19,6 +19,7 @@ public class CustomerScore : MonoBehaviour
 
     public void Start()
     {
+        timeTilMad = GameObject.Find("CustomerSpawner").GetComponent<CustomerSpawner>().madness;
         _gameManager = GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<GameManager>();
         _customerLogic = gameObject.GetComponent<CustomerLogic>();
         _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControler>();
@@ -69,7 +70,7 @@ public class CustomerScore : MonoBehaviour
         _gameManager.scorePoints += score;
         _customerLogic._leaveTheStore = true;
     }
-
+    
     public void CheckOrder()
     {
         if (_playerController.bananaCanRay && _customerLogic.bananaCanRay)
@@ -78,13 +79,14 @@ public class CustomerScore : MonoBehaviour
             _playerController.ClearHand();
             Debug.Log("Customor Order is Correct, proceed leaving");
             //TODO: Play sound
+            GameManager.instance.PlayThisOneShot("event:/SFX/Other/SellWeapon");
         }
         if (_playerController.bananaBatterySniperShovel && _customerLogic.bananaBatterySniperShovel)
         {
             QuestCompleted();
             _playerController.ClearHand();
             Debug.Log("Customor Order is Correct, proceed leaving");
-
+            GameManager.instance.PlayThisOneShot("event:/SFX/Other/SellWeapon");
             //TODO: Play sound
         }
         if (_playerController.bananaBatterySniper && _customerLogic.bananaBatterySniper)
@@ -92,7 +94,7 @@ public class CustomerScore : MonoBehaviour
             QuestCompleted();
             _playerController.ClearHand();
             Debug.Log("Customor Order is Correct, proceed leaving");
-
+            GameManager.instance.PlayThisOneShot("event:/SFX/Other/SellWeapon");
             //TODO: Play sound
         }
         if (_playerController.bananaCanGatlin && _customerLogic.bananaCanGatlin)
@@ -100,7 +102,7 @@ public class CustomerScore : MonoBehaviour
             QuestCompleted();
             _playerController.ClearHand();
             Debug.Log("Customor Order is Correct, proceed leaving");
-
+            GameManager.instance.PlayThisOneShot("event:/SFX/Other/SellWeapon");
             //TODO: Play sound
         }
         if (_playerController.drillToasterSniperSpring && _customerLogic.drillToasterSniperSpring)
@@ -108,7 +110,7 @@ public class CustomerScore : MonoBehaviour
             QuestCompleted();
             _playerController.ClearHand();
             Debug.Log("Customor Order is Correct, proceed leaving");
-
+            GameManager.instance.PlayThisOneShot("event:/SFX/Other/SellWeapon");
             //TODO: Play sound
         }
         if (_playerController.drillCanRay && _customerLogic.drillCanRay)
@@ -116,7 +118,7 @@ public class CustomerScore : MonoBehaviour
             QuestCompleted();
             _playerController.ClearHand();
             Debug.Log("Customor Order is Correct, proceed leaving");
-
+            GameManager.instance.PlayThisOneShot("event:/SFX/Other/SellWeapon");
             //TODO: Play sound
         }
         if (_playerController.drillGatlinShovel && _customerLogic.drillGatlinShovel)
@@ -124,7 +126,7 @@ public class CustomerScore : MonoBehaviour
             QuestCompleted();
             _playerController.ClearHand();
             Debug.Log("Customor Order is Correct, proceed leaving");
-
+            GameManager.instance.PlayThisOneShot("event:/SFX/Other/SellWeapon");
             //TODO: Play sound
         }
         if (_playerController.drillRayShovel && _customerLogic.drillRayShovel)
@@ -132,7 +134,7 @@ public class CustomerScore : MonoBehaviour
             QuestCompleted();
             _playerController.ClearHand();
             Debug.Log("Customor Order is Correct, proceed leaving");
-
+            GameManager.instance.PlayThisOneShot("event:/SFX/Other/SellWeapon");
             //TODO: Play sound
         }
         if (_playerController.dryerGatlinShovel && _customerLogic.dryerGatlinShovel)
@@ -140,7 +142,7 @@ public class CustomerScore : MonoBehaviour
             QuestCompleted();
             _playerController.ClearHand();
             Debug.Log("Customor Order is Correct, proceed leaving");
-
+            GameManager.instance.PlayThisOneShot("event:/SFX/Other/SellWeapon");
             //TODO: Play sound
         }
         if (_playerController.dryerCanSniperSpring && _customerLogic.dryerCanSniperSpring)
@@ -148,7 +150,7 @@ public class CustomerScore : MonoBehaviour
             QuestCompleted();
             _playerController.ClearHand();
             Debug.Log("Customor Order is Correct, proceed leaving");
-
+            GameManager.instance.PlayThisOneShot("event:/SFX/Other/SellWeapon");
             //TODO: Play sound
         }
         if (_playerController.dryerCanRaySpartula && _customerLogic.dryerCanRaySpartula)
@@ -156,6 +158,7 @@ public class CustomerScore : MonoBehaviour
             QuestCompleted();
             _playerController.ClearHand();
             Debug.Log("Customor Order is Correct, proceed leaving");
+            GameManager.instance.PlayThisOneShot("event:/SFX/Other/SellWeapon");
             //TODO: Play sound
         }
         else

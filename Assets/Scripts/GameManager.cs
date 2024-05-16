@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using FMOD.Studio;
 using FMODUnity;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 
@@ -53,6 +54,8 @@ public class GameManager : MonoBehaviour
 
   private void Start()
   {
+    pauseMenu.GetComponent<PauseMenu>().musicEventInstance.setParameterByName("Parameter 1", 0);
+    pauseMenu.GetComponent<PauseMenu>().atmoEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     ShowInteractUI(false);
     isAllowedToPause = true;
     Cursor.visible = false;
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
 
   public void EndScreenValues()
   {
+    pauseMenu.GetComponent<PauseMenu>().musicEventInstance.setParameterByName("Parameter 1", 1);
     isAllowedToPause = false;
     _gameOverScreen.SetActive(true);
     _scoreTextEnd.text = scorePoints.ToString();
@@ -75,13 +79,7 @@ public class GameManager : MonoBehaviour
   }
   public void NewGame()
   {
-    if (highScore >= scorePoints)
-    {
-      highScore = scorePoints;
-    }
-    customerServed = 0;
-    scorePoints = 0;
-    _gameOverScreen.SetActive(false);
+    SceneManager.LoadScene(1);
   }
   
   public void ShowInteractUI(bool show)

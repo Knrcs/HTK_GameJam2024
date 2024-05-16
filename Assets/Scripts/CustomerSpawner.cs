@@ -14,6 +14,7 @@ public class CustomerSpawner : MonoBehaviour
     public float difficulty;
     public int _customerLimit = 1;
     public GameObject customerSpawn;
+    public float madness;
 
 
     private void Start()
@@ -36,7 +37,7 @@ public class CustomerSpawner : MonoBehaviour
                 if (_spawnTimerDefault !>= spawnTimerCap)
                 {
                     Debug.Log("Difficulty Increased: " + _spawnTimerDefault);
-                    _spawnTimerDefault =  _spawnTimerDefault * difficulty;
+                    madness =  madness * difficulty;
                 }
             }
         }

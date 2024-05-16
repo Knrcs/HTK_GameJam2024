@@ -206,12 +206,10 @@ public class CustomerLogic : MonoBehaviour
         {
             if (_tableAssigned)
             {
-                _customerOrder.GetComponent<Animator>().Play("MaryWalkCycle");
                 transform.localScale *= sizeMultiplier;
             }
             else if (_leaveTheStore)
             {
-                _customerOrder.GetComponent<Animator>().Play("MaryWalkCycle");
                 transform.localScale /= sizeMultiplier;
             }
         }
@@ -221,6 +219,7 @@ public class CustomerLogic : MonoBehaviour
     {
         Debug.Log(moveSpots);
         moveSpots.GetComponentInChildren<TextMeshProUGUI>().SetText(_currentSprite.name);
+        moveSpots.GetComponentInChildren<Image>().enabled = true;
         
         if (moveSpots.name == "CustomerSpot11")
         {
@@ -249,6 +248,7 @@ public class CustomerLogic : MonoBehaviour
             _dontScale = false;
             _customerOrder.GetComponent<Animator>().Play("OrderPopOut");
             moveSpots.GetComponentInChildren<TextMeshProUGUI>().SetText("");
+            moveSpots.GetComponentInChildren<Image>().enabled = false;
             
             _tableAssigned = false;
             customor.transform.position = Vector2.MoveTowards(customor.transform.position, exitPoint.transform.position, moveSpeed);
