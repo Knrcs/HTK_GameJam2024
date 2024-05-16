@@ -206,10 +206,12 @@ public class CustomerLogic : MonoBehaviour
         {
             if (_tableAssigned)
             {
+                _customerOrder.GetComponent<Animator>().Play("MaryWalkCycle");
                 transform.localScale *= sizeMultiplier;
             }
             else if (_leaveTheStore)
             {
+                _customerOrder.GetComponent<Animator>().Play("MaryWalkCycle");
                 transform.localScale /= sizeMultiplier;
             }
         }

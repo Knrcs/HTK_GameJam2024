@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerControls _inputAction;
     private Vector2 _movementInput;
     private bool _atWall;
+    public Sprite maryWalk;
+    public Sprite maryStand;
 
 
     private void Start()
@@ -32,6 +34,17 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody2D.velocity = _movementInput * runSpeed;
+
+        if (_rigidbody2D.velocity != Vector2.zero)
+        {
+            GetComponent<SpriteRenderer>().sprite = maryWalk;
+            GetComponent<Animator>().Play("MaryWalkCycle");
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = maryStand;
+            GetComponent<Animator>().Play("EmptyMary");
+        }
 
         if (!_atWall)
         {

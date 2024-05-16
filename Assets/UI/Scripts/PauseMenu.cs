@@ -80,7 +80,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (isPaused)
+        if (isPaused || !GameManager.instance.isAllowedToPause)
         {
             if (!controllerActive && Gamepad.current != null && (Gamepad.current.leftStick.ReadValue() != Vector2.zero || Gamepad.current.rightStick.ReadValue() != Vector2.zero))
             {
@@ -135,13 +135,20 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    private void HideCursor()
+    public void HideCursor()
     {
         if (Cursor.visible)
         {
-            if (optionsMenu.activeSelf)
+            if (optionsMenu.activeSelf || !GameManager.instance.isAllowedToPause)
             {
-                masterSlider.Select();
+                if (!GameManager.instance.isAllowedToPause)
+                {
+                    GameManager.instance.retryButton.GetComponent<Button>().Select();
+                }
+                else
+                {
+                    masterSlider.Select();
+                }
             }
             else if (pauseMenu.activeSelf)
             {

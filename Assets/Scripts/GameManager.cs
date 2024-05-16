@@ -7,12 +7,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using FMOD.Studio;
 using FMODUnity;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 public class GameManager : MonoBehaviour
 {
   
   [SerializeField] private PlayerInput _playerInput;
   public PlayerControler player;
+  public GameObject pauseMenu;
   
   public static GameManager instance;
   [Header("Interaction")] [SerializeField]
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
   public int highScore;
 
   public bool isAllowedToPause;
+  public GameObject retryButton;
   
 
 
@@ -51,12 +55,15 @@ public class GameManager : MonoBehaviour
   {
     ShowInteractUI(false);
     isAllowedToPause = true;
+    Cursor.visible = false;
+    Cursor.lockState = CursorLockMode.Locked;
   }
 
   private void Update()
   {
     UpdateScore(scorePoints);
   }
+  
 
   public void EndScreenValues()
   {
@@ -64,6 +71,7 @@ public class GameManager : MonoBehaviour
     _gameOverScreen.SetActive(true);
     _scoreTextEnd.text = scorePoints.ToString();
     _customerServedText.text = customerServed.ToString();
+    pauseMenu.GetComponent<PauseMenu>().HideCursor();
   }
   public void NewGame()
   {
@@ -101,12 +109,14 @@ public class GameManager : MonoBehaviour
 
   public void OpenMenu()
   {
+    Cursor.visible = true;
     Cursor.lockState = CursorLockMode.Confined;
     _playerInput.SwitchCurrentActionMap("UI");
   }
   
   public void CloseMenu()
   {
+    Cursor.visible = false;
     Cursor.lockState = CursorLockMode.Locked;
     _playerInput.SwitchCurrentActionMap("Player");
   }

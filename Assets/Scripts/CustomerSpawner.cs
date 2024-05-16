@@ -13,6 +13,7 @@ public class CustomerSpawner : MonoBehaviour
     public float spawnTimerCap;
     public float difficulty;
     public int _customerLimit = 1;
+    public GameObject customerSpawn;
 
 
     private void Start()
@@ -29,7 +30,7 @@ public class CustomerSpawner : MonoBehaviour
         {
             if (spawnTimer <= 0 && transform.childCount <= 3)
             {
-                Instantiate(customerPrefab, transform);
+                Instantiate(customerPrefab, customerSpawn.transform);
                 _customerLimit++;
                 spawnTimer = _spawnTimerDefault;
                 if (_spawnTimerDefault !>= spawnTimerCap)

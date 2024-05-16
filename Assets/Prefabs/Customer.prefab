@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4826267869385218579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.63, y: 7.46, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -105,7 +105,7 @@ MonoBehaviour:
   _gameManager: {fileID: 0}
   moveSpots: {fileID: 0}
   customerScore: {fileID: 0}
-  moveSpeed: 0.01
+  moveSpeed: 0.001
   _waitingCustomer: 0
   _tableAssigned: 0
   _waitingForOrder: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 301dca9009c8f06448c67f53f8577e7d, type: 3}
   - {fileID: 21300000, guid: 90211df2855730e49824f51a3b714397, type: 3}
   - {fileID: 21300000, guid: b4b54751d2600bb4f9130e445c5dc69c, type: 3}
-  sizeMultiplier: 1.0008
+  sizeMultiplier: 1.00008
 --- !u!50 &3253022758131449648
 Rigidbody2D:
   serializedVersion: 4
