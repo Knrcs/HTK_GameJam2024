@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,11 +56,14 @@ public class CustomerLogic : MonoBehaviour
     public Sprite dryerCanRaySpartulaSprite;
 
     public List<Sprite> characterSprites = new List<Sprite>();
-    
+    private Sprite _currentSprite;
+    private GameObject _customerOrder;
+    private Image _orderSprite;
 
     private void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = characterSprites[Random.Range(0, characterSprites.Count)];
+        _currentSprite = characterSprites[Random.Range(0, characterSprites.Count)];
+        GetComponent<SpriteRenderer>().sprite = _currentSprite;
         _gameManager = GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<GameManager>();
         customor = this.GameObject();
         exitPoint = GameObject.Find("ExitPoint");
@@ -141,7 +145,24 @@ public class CustomerLogic : MonoBehaviour
         if (_tableAssigned)
         {
             customor.transform.position = Vector2.MoveTowards(customor.transform.position, moveSpots.transform.position, moveSpeed);
+            moveSpots.GetComponentInChildren<TextMeshProUGUI>().SetText(_currentSprite.name);
+            if (moveSpots.name == "CustomerSpot11")
+            {
+                _customerOrder = GameObject.Find("CustomerOrder1");
+            }
+            else if (moveSpots.name == "CustomerSpot21")
+            {
+                _customerOrder = GameObject.Find("CustomerOrder2");
+            }
+            else if (moveSpots.name == "CustomerSpot31")
+            {
+                _customerOrder = GameObject.Find("CustomerOrder3");
+            }
             
+            _customerOrder.GetComponent<Animator>().Play("OrderPopInOut");
+            _customerOrder.GetComponentInChildren<TextMeshProUGUI>().SetText(_currentSprite.name);
+            _orderSprite = _customerOrder.GetComponentsInChildren<Image>()[1];
+            _orderSprite.sprite = null;
         }
     }
 
@@ -149,6 +170,8 @@ public class CustomerLogic : MonoBehaviour
     {
         if (_leaveTheStore)
         {
+            _customerOrder.GetComponent<Animator>().Play("OrderPopOut");
+            
             _tableAssigned = false;
             customor.transform.position = Vector2.MoveTowards(customor.transform.position, exitPoint.transform.position, moveSpeed);
             if(leftRoom)
