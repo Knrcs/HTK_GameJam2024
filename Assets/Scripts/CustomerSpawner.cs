@@ -12,6 +12,7 @@ public class CustomerSpawner : MonoBehaviour
     private float _spawnTimerDefault;
     public float spawnTimerCap;
     public float difficulty;
+    public int _customerLimit;
 
 
     private void Start()
@@ -24,16 +25,21 @@ public class CustomerSpawner : MonoBehaviour
         spawnTimer -= Time.deltaTime;
 
 
-        if (spawnTimer <= 0 && transform.childCount < 3)
+        if (_customerLimit < 3)
         {
-            Instantiate(customerPrefab, transform);
-            spawnTimer = _spawnTimerDefault;
-            if (_spawnTimerDefault !>= spawnTimerCap)
+            if (spawnTimer <= 0 && transform.childCount <= 3)
             {
-                Debug.Log("Difficulty Increased: " + _spawnTimerDefault);
-                _spawnTimerDefault =  _spawnTimerDefault * difficulty;
+                Instantiate(customerPrefab, transform);
+                _customerLimit++;
+                spawnTimer = _spawnTimerDefault;
+                if (_spawnTimerDefault !>= spawnTimerCap)
+                {
+                    Debug.Log("Difficulty Increased: " + _spawnTimerDefault);
+                    _spawnTimerDefault =  _spawnTimerDefault * difficulty;
+                }
             }
         }
+
     }
     
     

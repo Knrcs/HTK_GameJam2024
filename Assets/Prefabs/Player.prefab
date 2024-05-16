@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 776365811
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 0, b: 0.90270615, a: 1}
@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isInteractable: {fileID: 4254213218353367452}
+  health: 3
   handSlot: 0
   _drill: 0
   _hairDryer: 0
@@ -306,3 +307,14 @@ MonoBehaviour:
   _spartula: 0
   _shovel: 0
   _spring: 0
+  bananaCanRay: 0
+  bananaBatterySniperShovel: 0
+  bananaBatterySniper: 0
+  bananaCanGatlin: 0
+  drillToasterSniperSpring: 0
+  drillCanRay: 0
+  drillGatlinShovel: 0
+  drillRayShovel: 0
+  dryerGatlinShovel: 0
+  dryerCanSniperSpring: 0
+  dryerCanRaySpartula: 0

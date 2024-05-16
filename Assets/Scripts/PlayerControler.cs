@@ -9,6 +9,7 @@ public class PlayerControler : MonoBehaviour
     private InputAction _interactAction;
     private Animator _animator;
     public GameObject _isInteractable;
+    public int health;
 
     public bool handSlot;
 
@@ -66,7 +67,21 @@ public class PlayerControler : MonoBehaviour
     {
         _isInteractable.SetActive(state);
     }
-    
+
+    public void ClearHand()
+    {
+        bananaCanRay = false;
+        bananaBatterySniperShovel = false;
+        bananaBatterySniper = false;
+        bananaCanGatlin = false;
+        drillToasterSniperSpring = false;
+        drillCanRay = false;
+        drillGatlinShovel = false;
+        drillRayShovel = false;
+        dryerGatlinShovel = false;
+        dryerCanSniperSpring = false;
+        dryerCanRaySpartula = false;
+    }
         
 }
 

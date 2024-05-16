@@ -81,14 +81,6 @@ public class CraftingLogic : MonoBehaviour
     public bool dryerGatlinShovel;
     public bool dryerCanSniperSpring;
     public bool dryerCanRaySpartula;
-    
-
-
-
-    private void Update()
-    {
-        
-    }
 
     public void ItemInCraftingTable()
     {

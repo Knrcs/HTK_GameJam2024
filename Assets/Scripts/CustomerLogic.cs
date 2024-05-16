@@ -12,6 +12,7 @@ public class CustomerLogic : MonoBehaviour
 
     public GameManager _gameManager;
     public GameObject moveSpots;
+    public CustomerScore customerScore;
     private int rngTable;
     private int rngOrder;
     
@@ -23,7 +24,8 @@ public class CustomerLogic : MonoBehaviour
     [SerializeField] private bool _waitingCustomer;
     [SerializeField] private bool _tableAssigned;
     [SerializeField] private bool _waitingForOrder;
-    [SerializeField] private bool _leaveTheStore;
+    public bool _leaveTheStore;
+    private CustomerSpawner _customerSpawner;
     public bool leftRoom = false;
     private float _internalClock;
     public float clockValuemin;
@@ -79,7 +81,9 @@ public class CustomerLogic : MonoBehaviour
         SelectTable(rngTable);
         _questComplete = false;
         _waitingCustomer = true;
-        
+        _customerSpawner = GameObject.Find("CustomerSpawner").GetComponent<CustomerSpawner>();
+        customerScore = gameObject.GetComponent<CustomerScore>();
+
     }
 
     private void FadeInOver() { _startMoving = true; }
@@ -145,6 +149,11 @@ public class CustomerLogic : MonoBehaviour
                 _waitingCustomer = false;
                 _gameManager.table03 = true;
                 _tableAssigned = true;
+            }
+            else
+            {
+                rngTable = Random.Range(1, 4);
+                SelectTable(rngTable);
             }
         }
 
@@ -233,6 +242,7 @@ public class CustomerLogic : MonoBehaviour
 
     private void DeleteCustomer()
     {
+        _customerSpawner._customerLimit--;
         Destroy(customor);
     }
 

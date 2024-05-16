@@ -29,6 +29,12 @@ public class GameManager : MonoBehaviour
   public bool table02 = false;
   public bool table03 = false;
 
+  [Header("Score Stuff")] 
+  public int scorePoints;
+  public int customerServed;
+  public int highScore;
+  
+
 
   private void Awake()
   {
@@ -38,6 +44,16 @@ public class GameManager : MonoBehaviour
   private void Start()
   {
     ShowInteractUI(false);
+  }
+
+  public void NewGame()
+  {
+    if (highScore >= scorePoints)
+    {
+      highScore = scorePoints;
+    }
+    customerServed = 0;
+    scorePoints = 0;
   }
   
   public void ShowInteractUI(bool show)
