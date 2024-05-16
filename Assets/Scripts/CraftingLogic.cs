@@ -10,6 +10,7 @@ public class CraftingLogic : MonoBehaviour
     [SerializeField] private bool _magazinPartUsed;
     [SerializeField] private bool _barrelPartUsed;
     [SerializeField] private bool _stockPartUsed;
+    public bool pickThatBooty;
 
     [Header("Body Item")] 
     [SerializeField] public bool _drill;
@@ -384,6 +385,7 @@ public class CraftingLogic : MonoBehaviour
         if (_banana && _can && _raygun)
         {
             //TODO: Success Sound
+            pickThatBooty = true;
             bananaCanRay = true;
             resultSpriteObject.sprite = bananaCanRaySprite;
             ClearCraftingTable();
@@ -392,6 +394,7 @@ public class CraftingLogic : MonoBehaviour
 
         if (_drill && _can && _raygun)
         {
+            pickThatBooty = true;
             drillCanRay = true;
             resultSpriteObject.sprite = drillCanRaySprite;
             ClearCraftingTable();
@@ -400,6 +403,7 @@ public class CraftingLogic : MonoBehaviour
 
         if (_drill && _gatlin && _shovel)
         {
+            pickThatBooty = true;
             drillGatlinShovel = true;
             resultSpriteObject.sprite = drillGatlinShovelSprite;
             ClearCraftingTable();
@@ -407,6 +411,7 @@ public class CraftingLogic : MonoBehaviour
         }
         if (_drill && _raygun && _shovel)
         {
+            pickThatBooty = true;
             drillRayShovel = true;
             resultSpriteObject.sprite = drillRayShovelSprite;
             ClearCraftingTable();
@@ -414,6 +419,7 @@ public class CraftingLogic : MonoBehaviour
         }
         if (_drill && _sniperBarrel && _spring && _toaster)
         {
+            pickThatBooty = true;
             drillToasterSniperSpring = true;
             resultSpriteObject.sprite = drillToasterSniperSpringSprite;
             ClearCraftingTable();
@@ -422,6 +428,7 @@ public class CraftingLogic : MonoBehaviour
 
         if (_hairDryer && _can && _sniperBarrel && _spring)
         {
+            pickThatBooty = true;
             dryerCanSniperSpring = true;
             resultSpriteObject.sprite = dryerCanSniperSpringSprite;
             ClearCraftingTable();
@@ -430,6 +437,7 @@ public class CraftingLogic : MonoBehaviour
 
         if (_hairDryer && _can && _spartula && _raygun)
         {
+            pickThatBooty = true;
             dryerCanRaySpartula = true;
             resultSpriteObject.sprite = dryerCanRaySpartulaSprite;
             ClearCraftingTable();
@@ -438,6 +446,7 @@ public class CraftingLogic : MonoBehaviour
 
         if (_hairDryer && _gatlin && _shovel)
         {
+            pickThatBooty = true;
             dryerGatlinShovel = true;
             resultSpriteObject.sprite = dryerGatlinShovelSprite;
             ClearCraftingTable();
@@ -446,13 +455,15 @@ public class CraftingLogic : MonoBehaviour
 
         if (_banana && _battery && _sniperBarrel)
         {
+            pickThatBooty = true;
             bananaBatterySniper = true;
             resultSpriteObject.sprite = bananaBatterySniperSprite;
             ClearCraftingTable();
-            LogItemCrafted("Banana Battery Sniper Rifle");  
+            LogItemCrafted("Banana Battery Sniper Rifle"); 
         }
         if (_banana && _battery && _sniperBarrel && _shovel)
         {
+            pickThatBooty = true;
             bananaBatterySniperShovel = true;
             resultSpriteObject.sprite = bananaBatterySniperShovelSprite;
             ClearCraftingTable();
@@ -460,13 +471,15 @@ public class CraftingLogic : MonoBehaviour
         }
         if (_banana && _can && _gatlin)
         {
+            pickThatBooty = true;
             bananaCanGatlin = true;
             resultSpriteObject.sprite = bananaCanGatlinSprite;
             ClearCraftingTable();
-            LogItemCrafted("Banana Battery Sniper Rifle");  
+            LogItemCrafted("Banana Battery Sniper Rifle");
         }
         else
         {
+            
             //TODO: Fail Sound
             ClearCraftingTable();
             LogItemCrafted("Null");
@@ -499,10 +512,91 @@ public class CraftingLogic : MonoBehaviour
         magazinSpriteObject.sprite = null;
         barrelSpriteObject.sprite = null;
         stockSpriteObject.sprite = null;
+        
+        _bodyPartUsed = false;
+        _magazinPartUsed = false;
+        _barrelPartUsed = false;
+        _stockPartUsed = false;
     }
 
-    private void PickUpResult()
+    private void PickUpCraftingTable()
     {
-        
+        _bodyPartUsed = false;
+        _magazinPartUsed = false;
+        _barrelPartUsed = false;
+        _stockPartUsed = false;
+        resultSpriteObject.sprite = null;
+
+        pickThatBooty = false;
+    }
+
+    public void PickUpResult()
+    {
+        if (pickThatBooty)
+        {
+            if (bananaCanRay)
+            {
+                PickUpCraftingTable();
+                bananaCanRay = false;
+                _playerControler.bananaCanRay = true;
+            }
+            if (bananaBatterySniperShovel)
+            {
+                PickUpCraftingTable();
+                bananaBatterySniperShovel = false;
+                _playerControler.bananaBatterySniperShovel = true;
+            }
+            if (bananaBatterySniper)
+            {
+                PickUpCraftingTable();
+                bananaBatterySniper = false;
+                _playerControler.bananaBatterySniper = true;
+            }
+            if (bananaCanGatlin)
+            {
+                PickUpCraftingTable();
+                bananaCanGatlin = false;
+                _playerControler.bananaCanGatlin = true;
+            }
+            if (drillToasterSniperSpring)
+            {
+                PickUpCraftingTable();
+                drillToasterSniperSpring = false;
+                _playerControler.drillToasterSniperSpring = true;
+            }
+            if (drillCanRay)
+            {
+                PickUpCraftingTable();
+                drillCanRay = false;
+                _playerControler.drillCanRay = true;
+            }
+            if (drillRayShovel)
+            {
+                PickUpCraftingTable();
+                drillRayShovel = false;
+                _playerControler.drillRayShovel = true;
+            }
+            if (dryerGatlinShovel)
+            {
+                PickUpCraftingTable();
+                dryerGatlinShovel = false;
+                _playerControler.dryerGatlinShovel = true;
+            }
+            if (dryerCanSniperSpring)
+            {
+                PickUpCraftingTable();
+                dryerCanSniperSpring = false;
+                _playerControler.dryerCanSniperSpring = true;
+            }
+            if (dryerCanRaySpartula)
+            {
+                PickUpCraftingTable();
+                dryerCanRaySpartula = false;
+                _playerControler.dryerCanRaySpartula = true;
+            }
+            
+            
+        }
+        else return;
     }
 }

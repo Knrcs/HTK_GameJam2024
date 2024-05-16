@@ -10,6 +10,7 @@ TagManager:
   - Gamemanager
   - Exit
   - Interactable
+  - Customer
   layers:
   - Default
   - TransparentFX

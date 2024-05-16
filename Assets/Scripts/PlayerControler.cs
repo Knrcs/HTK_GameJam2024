@@ -32,6 +32,19 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] public bool _shovel;
     [SerializeField] public bool _spring;
 
+    [Header("ItemsInHand")] 
+    public bool bananaCanRay;
+    public bool bananaBatterySniperShovel;
+    public bool bananaBatterySniper;
+    public bool bananaCanGatlin;
+    public bool drillToasterSniperSpring;
+    public bool drillCanRay;
+    public bool drillGatlinShovel;
+    public bool drillRayShovel;
+    public bool dryerGatlinShovel;
+    public bool dryerCanSniperSpring;
+    public bool dryerCanRaySpartula;
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {

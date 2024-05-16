@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 8207235598813662295}
   - component: {fileID: 511323036911473061}
   - component: {fileID: 1334449574338598114}
-  - component: {fileID: 1326318319251502250}
   - component: {fileID: 3253022758131449648}
   - component: {fileID: 4860398692251119315}
   m_Layer: 0
   m_Name: Customer
-  m_TagString: Untagged
+  m_TagString: Customer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,22 +104,34 @@ MonoBehaviour:
   moveSpeed: 0.01
   _waitingCustomer: 0
   _tableAssigned: 0
+  _waitingForOrder: 0
   _leaveTheStore: 0
   leftRoom: 0
   clockValuemin: 0.45
   clockValuemax: 1
---- !u!114 &1326318319251502250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4826267869385218579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16aff299b2671134bb5cc76f0afd1647, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _itemSpriteRenderer: {fileID: 0}
+  bananaCanRay: 0
+  bananaBatterySniperShovel: 0
+  bananaBatterySniper: 0
+  bananaCanGatlin: 0
+  drillToasterSniperSpring: 0
+  drillCanRay: 0
+  drillGatlinShovel: 0
+  drillRayShovel: 0
+  dryerGatlinShovel: 0
+  dryerCanSniperSpring: 0
+  dryerCanRaySpartula: 0
+  bananaCanRaySprite: {fileID: 21300000, guid: ae1c1fe7261f1b74ea80f9221fafb0f7, type: 3}
+  bananaBatterySniperShovelSprite: {fileID: 21300000, guid: 3551e9caf22efcc4d867670c77b25b06, type: 3}
+  bananaCanGatlinSprite: {fileID: 21300000, guid: 1c13c6cb94ad11a4480dc458eec98a0e, type: 3}
+  bananaBatterySniperSprite: {fileID: 21300000, guid: a204068259022a34880a52b2cff0564e, type: 3}
+  drillToasterSniperSpringSprite: {fileID: 21300000, guid: 88f539bfcd0246c43a76f5301851e613, type: 3}
+  drillCanRaySprite: {fileID: 21300000, guid: 7485b0ba1bccb8a418a08c0b9e489958, type: 3}
+  drillGatlinShovelSprite: {fileID: 21300000, guid: b45aae03af6fbbf48bc00dde9243bccc, type: 3}
+  drillRayShovelSprite: {fileID: 21300000, guid: 4ed8f517d1c6e0644a53cc3d1d3d5481, type: 3}
+  dryerGatlinShovelSprite: {fileID: 21300000, guid: c991c861d28ab454684e6210126699ab, type: 3}
+  dryerCanSniperSpringSprite: {fileID: 21300000, guid: e1cf6c26a46664d46b67f265f7c70b08, type: 3}
+  dryerCanRaySpartulaSprite: {fileID: 21300000, guid: bf8db131382e9944986bb9cd93a403ed, type: 3}
 --- !u!50 &3253022758131449648
 Rigidbody2D:
   serializedVersion: 4
