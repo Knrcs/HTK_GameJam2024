@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1334449574338598114}
   - component: {fileID: 3253022758131449648}
   - component: {fileID: 4860398692251119315}
+  - component: {fileID: 8768670739207448646}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Customer
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -138,6 +139,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 268319e78e65b0546a276932f26e0caa, type: 3}
   - {fileID: 21300000, guid: 268319e78e65b0546a276932f26e0caa, type: 3}
   - {fileID: 21300000, guid: 268319e78e65b0546a276932f26e0caa, type: 3}
+  sizeMultiplier: 1.0008
 --- !u!50 &3253022758131449648
 Rigidbody2D:
   serializedVersion: 4
@@ -200,3 +202,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!95 &8768670739207448646
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4826267869385218579}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2615a04932df767409d7db9f3c3bbc87, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

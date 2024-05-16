@@ -59,9 +59,16 @@ public class CustomerLogic : MonoBehaviour
     private Sprite _currentSprite;
     private GameObject _customerOrder;
     private Image _orderSprite;
+    private Sprite _currentGunRequested;
+    private bool _startMoving = false;
+    
+    public float sizeMultiplier;
+    private bool _dontScale;
 
     private void Start()
     {
+        GetComponent<Animator>().Play("FadeInAnimation");
+        
         _currentSprite = characterSprites[Random.Range(0, characterSprites.Count)];
         GetComponent<SpriteRenderer>().sprite = _currentSprite;
         _gameManager = GameObject.FindGameObjectWithTag("Gamemanager").GetComponent<GameManager>();
@@ -74,7 +81,8 @@ public class CustomerLogic : MonoBehaviour
         _waitingCustomer = true;
         
     }
-    
+
+    private void FadeInOver() { _startMoving = true; }
 
     private void SelectTable(int spots)
     {
@@ -102,7 +110,10 @@ public class CustomerLogic : MonoBehaviour
         }
 
         _internalClock -= Time.deltaTime;
-        CustomerMove();
+        if (_startMoving)
+        {
+            CustomerMove();
+        }
         KillCustomer();
     }
 
@@ -145,37 +156,63 @@ public class CustomerLogic : MonoBehaviour
         if (_tableAssigned)
         {
             customor.transform.position = Vector2.MoveTowards(customor.transform.position, moveSpots.transform.position, moveSpeed);
-            moveSpots.GetComponentInChildren<TextMeshProUGUI>().SetText(_currentSprite.name);
-            if (moveSpots.name == "CustomerSpot11")
-            {
-                _customerOrder = GameObject.Find("CustomerOrder1");
-            }
-            else if (moveSpots.name == "CustomerSpot21")
-            {
-                _customerOrder = GameObject.Find("CustomerOrder2");
-            }
-            else if (moveSpots.name == "CustomerSpot31")
-            {
-                _customerOrder = GameObject.Find("CustomerOrder3");
-            }
-            
-            _customerOrder.GetComponent<Animator>().Play("OrderPopInOut");
-            _customerOrder.GetComponentInChildren<TextMeshProUGUI>().SetText(_currentSprite.name);
-            _orderSprite = _customerOrder.GetComponentsInChildren<Image>()[1];
-            _orderSprite.sprite = null;
+            CustomerBiggerAndSmaller();
         }
+    }
+
+    private void CustomerBiggerAndSmaller()
+    {
+        if (!_dontScale)
+        {
+            if (_tableAssigned)
+            {
+                transform.localScale *= sizeMultiplier;
+            }
+            else if (_leaveTheStore)
+            {
+                transform.localScale /= sizeMultiplier;
+            }
+        }
+    }
+
+    private void SetOrderUI()
+    {
+        moveSpots.GetComponentInChildren<TextMeshProUGUI>().SetText(_currentSprite.name);
+        if (moveSpots.name == "CustomerSpot11")
+        {
+            _customerOrder = GameObject.Find("CustomerOrder1");
+        }
+        else if (moveSpots.name == "CustomerSpot21")
+        {
+            _customerOrder = GameObject.Find("CustomerOrder2");
+        }
+        else if (moveSpots.name == "CustomerSpot31")
+        {
+            _customerOrder = GameObject.Find("CustomerOrder3");
+        }
+
+        _dontScale = true;
+        _customerOrder.GetComponentInChildren<TextMeshProUGUI>().SetText(_currentSprite.name);
+        _orderSprite = _customerOrder.GetComponentsInChildren<Image>()[1];
+        _orderSprite.sprite = _currentGunRequested;
+        _customerOrder.GetComponent<Animator>().Play("OrderPopInOut");
     }
 
     private void KillCustomer()
     {
         if (_leaveTheStore)
         {
+            _dontScale = false;
             _customerOrder.GetComponent<Animator>().Play("OrderPopOut");
+            moveSpots.GetComponentInChildren<TextMeshProUGUI>().SetText("");
             
             _tableAssigned = false;
             customor.transform.position = Vector2.MoveTowards(customor.transform.position, exitPoint.transform.position, moveSpeed);
+            CustomerBiggerAndSmaller();
             if(leftRoom)
             {
+                _dontScale = true;
+                
                 switch (rngTable)
                 {
                     case 1:
@@ -189,9 +226,14 @@ public class CustomerLogic : MonoBehaviour
                         break;
                 
                 }
-                Destroy(gameObject);
+                GetComponent<Animator>().Play("FadeOutAnimation");
             }
         }
+    }
+
+    private void DeleteCustomer()
+    {
+        Destroy(customor);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -302,37 +344,49 @@ public class CustomerLogic : MonoBehaviour
         {
             case 1:
                 bananaCanRay = true;
+                _currentGunRequested = bananaCanRaySprite;
                 break;
             case 2:
                 bananaBatterySniperShovel = true;
+                _currentGunRequested = bananaBatterySniperShovelSprite;
                 break;
             case 3:
                 bananaBatterySniper = true;
+                _currentGunRequested = bananaBatterySniperSprite;
                 break;
             case 4:
                 drillToasterSniperSpring = true;
+                _currentGunRequested = drillToasterSniperSpringSprite;
                 break;
             case 5:
                 drillCanRay = true;
+                _currentGunRequested = drillCanRaySprite;
                 break;
             case 6:
                 drillGatlinShovel = true;
+                _currentGunRequested = drillGatlinShovelSprite;
                 break;
             case 7:
                 drillRayShovel = true;
+                _currentGunRequested = drillRayShovelSprite;
                 break;
             case 8:
                 dryerGatlinShovel = true;
+                _currentGunRequested = dryerGatlinShovelSprite;
                 break;
             case 9:
                 dryerCanRaySpartula = true;
+                _currentGunRequested = dryerCanRaySpartulaSprite;
                 break;
             case 10:
                 dryerCanSniperSpring = true;
+                _currentGunRequested = dryerCanSniperSpringSprite;
                 break;
             case 11:
                 bananaCanGatlin = true;
+                _currentGunRequested = bananaCanGatlinSprite;
                 break;
         }
+        SetOrderUI();
     }
 }
