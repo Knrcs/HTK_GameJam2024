@@ -37,11 +37,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_rigidbody2D.velocity != _lastVelocity)
             {
-                if (_rigidbody2D.velocity.y < 0 && transform.localScale.y < 2.55f)
+                if (_rigidbody2D.velocity.y < 0 && transform.localScale.y < 2.3f)
                 {
                     transform.localScale *= sizeMultiplier;
                 }
-                else if (_rigidbody2D.velocity.y > 0 && transform.localScale.y > 0.7f)
+                else if (_rigidbody2D.velocity.y > 0 && transform.localScale.y > 1.2f)
                 {
                     transform.localScale /= sizeMultiplier;
                 }

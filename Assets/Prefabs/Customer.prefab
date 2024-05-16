@@ -76,8 +76,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 181357343
-  m_SortingLayer: 4
+  m_SortingLayerID: 406044889
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -138,10 +138,19 @@ MonoBehaviour:
   dryerCanRaySpartulaSprite: {fileID: 21300000, guid: bf8db131382e9944986bb9cd93a403ed, type: 3}
   characterSprites:
   - {fileID: 21300000, guid: 74e980c1f922de44f80b7add97b6a5cb, type: 3}
-  - {fileID: 21300000, guid: 268319e78e65b0546a276932f26e0caa, type: 3}
-  - {fileID: 21300000, guid: 268319e78e65b0546a276932f26e0caa, type: 3}
-  - {fileID: 21300000, guid: 268319e78e65b0546a276932f26e0caa, type: 3}
-  - {fileID: 21300000, guid: 268319e78e65b0546a276932f26e0caa, type: 3}
+  - {fileID: 21300000, guid: 2a98b6bb40c5bd749beec9d0a481401c, type: 3}
+  - {fileID: 21300000, guid: f97872285da53b14e800bfbabc307284, type: 3}
+  - {fileID: 21300000, guid: 6b84f75f3f57f2744b43c61f72751776, type: 3}
+  - {fileID: 21300000, guid: fca0bb0a9ec94394baab1ba322d6559e, type: 3}
+  - {fileID: 21300000, guid: c963ac1d810076b4ab4a5356b866d0f0, type: 3}
+  - {fileID: 21300000, guid: d564bfc0fc2e83649b9a1e2a479cdaac, type: 3}
+  - {fileID: 21300000, guid: 285d918a94d63fc4fb224d3d8ef3f94f, type: 3}
+  - {fileID: 21300000, guid: 255454b633f1fb14f84255bd4b791c93, type: 3}
+  - {fileID: 21300000, guid: 5a67035bfdacaac47b673bd6363fb9cd, type: 3}
+  - {fileID: 21300000, guid: c7ed34208c9bbcb448c6a47917e6b705, type: 3}
+  - {fileID: 21300000, guid: 301dca9009c8f06448c67f53f8577e7d, type: 3}
+  - {fileID: 21300000, guid: 90211df2855730e49824f51a3b714397, type: 3}
+  - {fileID: 21300000, guid: b4b54751d2600bb4f9130e445c5dc69c, type: 3}
   sizeMultiplier: 1.0008
 --- !u!50 &3253022758131449648
 Rigidbody2D:
@@ -291,7 +300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3375080921331485474, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.68
+      value: -4.21
       objectReference: {fileID: 0}
     - target: {fileID: 3375080921331485474, guid: bf8662876f1eb5149b72c7b40d221c32, type: 3}
       propertyPath: m_LocalPosition.z
