@@ -18,8 +18,12 @@ public class GameManager : MonoBehaviour
   [Header("Interaction")] [SerializeField]
   private GameObject _interactUI;
 
-  [Header("UI")] [SerializeField] 
-  private TMP_Text _score;
+  [Header("UI")] 
+  [SerializeField] private TMP_Text _scoreText;
+  [SerializeField] private TMP_Text _scoreTextEnd;
+  [SerializeField] private TMP_Text _highScoreText;
+  [SerializeField] private TMP_Text _customerServedText;
+  [SerializeField] private GameObject _gameOverScreen;
 
   [Header("Pause")] 
   public bool paused;
@@ -46,6 +50,18 @@ public class GameManager : MonoBehaviour
     ShowInteractUI(false);
   }
 
+  private void Update()
+  {
+    UpdateScore(scorePoints);
+  }
+
+  public void EndScreenValues()
+  {
+    _gameOverScreen.SetActive(true);
+    _scoreTextEnd.text = scorePoints.ToString();
+    _highScoreText.text = highScore.ToString();
+    _customerServedText.text = customerServed.ToString();
+  }
   public void NewGame()
   {
     if (highScore >= scorePoints)
@@ -54,6 +70,7 @@ public class GameManager : MonoBehaviour
     }
     customerServed = 0;
     scorePoints = 0;
+    _gameOverScreen.SetActive(false);
   }
   
   public void ShowInteractUI(bool show)
@@ -64,7 +81,7 @@ public class GameManager : MonoBehaviour
   public void UpdateScore(int score)
   {
     
-    _score.text = score.ToString();
+    _scoreText.text = score.ToString();
   }
   
   public void PauseGame()

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CustomerScore : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class CustomerScore : MonoBehaviour
     private float scoreDrain;
     public float timeTilMad;
     private float _timeTilMadDefault;
+    private Image _fillSprite;
+    private GameObject _customerOrderCard;
 
     public void Start()
     {
@@ -25,14 +28,38 @@ public class CustomerScore : MonoBehaviour
 
     private void Update()
     {
-        timeTilMad -= Time.deltaTime;
-        maxScore -= scoreDrain * Time.deltaTime;
-        if (timeTilMad <= 0)
+        if (_customerLogic._waitingForOrder)
         {
-            _playerController.health--;
-            _customerLogic._leaveTheStore = true;
-            timeTilMad = _timeTilMadDefault;
+            timeTilMad -= Time.deltaTime;
+            maxScore -= scoreDrain * Time.deltaTime;
+            if (timeTilMad <= 0)
+            {
+                _playerController.health--;
+                _customerLogic._leaveTheStore = true;
+                timeTilMad = _timeTilMadDefault;
+            }
+
+            _fillSprite.fillAmount = maxScore / 100f;
         }
+
+    }
+
+    public void GetOrderCard()
+    {
+        if (_customerLogic.moveSpots.name == "CustomerSpot11")
+        {
+            _customerOrderCard = GameObject.Find("CustomerOrder1");
+        }
+        else if (_customerLogic.moveSpots.name == "CustomerSpot21")
+        {
+            _customerOrderCard = GameObject.Find("CustomerOrder2");
+        }
+        else if (_customerLogic.moveSpots.name == "CustomerSpot31")
+        {
+            _customerOrderCard = GameObject.Find("CustomerOrder3");
+        }
+
+        _fillSprite = _customerOrderCard.GetComponentsInChildren<Image>()[3];
     }
 
     public void QuestCompleted()

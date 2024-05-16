@@ -9,6 +9,7 @@ public class PlayerControler : MonoBehaviour
     private InputAction _interactAction;
     private Animator _animator;
     public GameObject _isInteractable;
+    private GameManager _gameManager;
     public int health;
 
     public bool handSlot;
@@ -46,6 +47,18 @@ public class PlayerControler : MonoBehaviour
     public bool dryerCanSniperSpring;
     public bool dryerCanRaySpartula;
 
+    private void Start()
+    {
+        _gameManager = GameObject.FindWithTag("Gamemanager").GetComponent<GameManager>();
+    }
+
+    private void Update()
+    {
+        if (health == 0)
+        {
+            _gameManager.EndScreenValues();
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

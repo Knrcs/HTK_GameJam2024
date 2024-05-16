@@ -23,7 +23,7 @@ public class CustomerLogic : MonoBehaviour
     private bool _questComplete = false;
     [SerializeField] private bool _waitingCustomer;
     [SerializeField] private bool _tableAssigned;
-    [SerializeField] private bool _waitingForOrder;
+    public bool _waitingForOrder;
     public bool _leaveTheStore;
     private CustomerSpawner _customerSpawner;
     public bool leftRoom = false;
@@ -61,6 +61,7 @@ public class CustomerLogic : MonoBehaviour
     private Sprite _currentSprite;
     private GameObject _customerOrder;
     private Image _orderSprite;
+    private Image _fillSprite;
     private Sprite _currentGunRequested;
     private bool _startMoving = false;
     
@@ -263,6 +264,7 @@ public class CustomerLogic : MonoBehaviour
             if (!_waitingForOrder)
             {
                 AssignOrder();
+                customerScore.GetOrderCard();
                 _waitingForOrder = true;
             }
         }
@@ -270,6 +272,7 @@ public class CustomerLogic : MonoBehaviour
         {
             if (!_waitingForOrder)
             {
+                customerScore.GetOrderCard();
                 AssignOrder();
                 _waitingForOrder = true;
 
@@ -280,6 +283,7 @@ public class CustomerLogic : MonoBehaviour
             if (!_waitingForOrder)
             {
                 AssignOrder();
+                customerScore.GetOrderCard();
                 _waitingForOrder = true;
 
             }
