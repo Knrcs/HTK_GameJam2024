@@ -12,7 +12,7 @@ public class CustomerSpawner : MonoBehaviour
     private float _spawnTimerDefault;
     public float spawnTimerCap;
     public float difficulty;
-    public int _customerLimit;
+    public int _customerLimit = 1;
 
 
     private void Start()

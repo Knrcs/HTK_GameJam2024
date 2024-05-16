@@ -163,7 +163,6 @@ public class CustomerScore : MonoBehaviour
             //TODO: Error Sound
             Debug.Log("Customor Order is Incorrect");
         }
-        Debug.Log("Script works");
     }
 
 }
