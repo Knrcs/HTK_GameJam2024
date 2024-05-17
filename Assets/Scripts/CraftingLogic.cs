@@ -473,20 +473,20 @@ public class CraftingLogic : MonoBehaviour
                 LogItemCrafted("Dryer Gatlin Shovel");
                 CraftingSuccessSound();
             }
-            else if (_banana && _battery && _sniperBarrel)
-            {
-                pickThatBooty = true;
-                bananaBatterySniper = true;
-                resultSpriteObject.sprite = bananaBatterySniperSprite;
-                ClearCraftingTable();
-                LogItemCrafted("Banana Battery Sniper Rifle");
-                CraftingSuccessSound();
-            }
             else if (_banana && _battery && _sniperBarrel && _shovel)
             {
                 pickThatBooty = true;
                 bananaBatterySniperShovel = true;
                 resultSpriteObject.sprite = bananaBatterySniperShovelSprite;
+                ClearCraftingTable();
+                LogItemCrafted("Banana Battery Sniper Rifle");
+                CraftingSuccessSound();
+            }
+            else if (_banana && _battery && _sniperBarrel)
+            {
+                pickThatBooty = true;
+                bananaBatterySniper = true;
+                resultSpriteObject.sprite = bananaBatterySniperSprite;
                 ClearCraftingTable();
                 LogItemCrafted("Banana Battery Sniper Rifle");
                 CraftingSuccessSound();
