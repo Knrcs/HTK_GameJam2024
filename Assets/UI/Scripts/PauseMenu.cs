@@ -80,7 +80,7 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (isPaused || !GameManager.instance.isAllowedToPause)
+        if (isPaused || !GameManager.instance.isAllowedToPause || GameManager.instance.boxOpen)
         {
             if (!controllerActive && Gamepad.current != null && (Gamepad.current.leftStick.ReadValue() != Vector2.zero || Gamepad.current.rightStick.ReadValue() != Vector2.zero))
             {
@@ -145,7 +145,7 @@ public class PauseMenu : MonoBehaviour
                 {
                     GameManager.instance.retryButton.GetComponent<Button>().Select();
                 }
-                else
+                else if (GameManager.instance.isAllowedToPause)
                 {
                     masterSlider.Select();
                 }
@@ -153,6 +153,22 @@ public class PauseMenu : MonoBehaviour
             else if (pauseMenu.activeSelf)
             {
                 startButton.Select();
+            }
+            else if (GameManager.instance.stock.activeSelf)
+            {
+                GameManager.instance.stockButton.GetComponent<Button>().Select();
+            }
+            else if (GameManager.instance.barrel.activeSelf)
+            {
+                GameManager.instance.barrelButton.GetComponent<Button>().Select();
+            }
+            else if (GameManager.instance.bodyBox.activeSelf)
+            {
+                GameManager.instance.bodyButton.GetComponent<Button>().Select();
+            }
+            else if (GameManager.instance.magazine.activeSelf)
+            {
+                GameManager.instance.magazineButton.GetComponent<Button>().Select();
             }
             
             Cursor.visible = false;
@@ -183,6 +199,13 @@ public class PauseMenu : MonoBehaviour
                 _content.SetActive(false);
                 optionsMenu.SetActive(false);
                 FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Pause", 1);
+                if (GameManager.instance.stock.activeSelf || GameManager.instance.barrel.activeSelf || GameManager.instance.bodyBox.activeSelf || GameManager.instance.magazine.activeSelf)
+                {
+                    if (controllerActive || keyboardActive)
+                    {
+                        startButton.Select();   
+                    }
+                }
                 player.SwitchCurrentActionMap("UI");
             }
             else
@@ -190,7 +213,26 @@ public class PauseMenu : MonoBehaviour
                 optionsMenu.SetActive(false);
                 _content.SetActive(true);
                 FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Pause", 0);
-                player.SwitchCurrentActionMap("Player");
+                if (GameManager.instance.stock.activeSelf)
+                {
+                    GameManager.instance.stockButton.GetComponent<Button>().Select();
+                }
+                else if (GameManager.instance.barrel.activeSelf)
+                {
+                    GameManager.instance.barrelButton.GetComponent<Button>().Select();
+                }
+                else if (GameManager.instance.bodyBox.activeSelf)
+                {
+                    GameManager.instance.bodyButton.GetComponent<Button>().Select();
+                }
+                else if (GameManager.instance.magazine.activeSelf)
+                {
+                    GameManager.instance.magazineButton.GetComponent<Button>().Select();
+                }
+                else
+                {
+                    player.SwitchCurrentActionMap("Player");
+                }
             }
             
             Time.timeScale = isPaused ? 0f : 1f; 

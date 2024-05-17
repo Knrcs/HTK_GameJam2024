@@ -13,6 +13,7 @@ public class PlayerControler : MonoBehaviour
     private GameManager _gameManager;
     public int health;
     public SpriteRenderer handItem;
+    public GameObject armbandddo;
 
     public bool handSlot;
 
@@ -48,6 +49,7 @@ public class PlayerControler : MonoBehaviour
     public bool dryerGatlinShovel;
     public bool dryerCanSniperSpring;
     public bool dryerCanRaySpartula;
+    public bool drillRaySpatula;
 
     [Header("Sprite Collection")] 
     public Sprite drillSprite;
@@ -67,6 +69,7 @@ public class PlayerControler : MonoBehaviour
     public Sprite bananaBatterySniperShovelSprite;
     public Sprite bananaBatterySniperSprite;
     public Sprite bananaCangatlinSprite;
+    public Sprite drillRaySpatulaSprite;
     public Sprite drillToasterSniperSpringSprite;
     public Sprite drillCanRaySprite;
     public Sprite drillGatlinShovelSprite;
@@ -206,6 +209,10 @@ public class PlayerControler : MonoBehaviour
         {
             handItem.sprite = dryerCanRaySpartulaSprite;
         }
+        else if (drillRaySpatula)
+        {
+            handItem.sprite = drillRaySpatulaSprite;
+        }
         else
         {
             handItem.sprite = null;
@@ -226,6 +233,7 @@ public class PlayerControler : MonoBehaviour
         dryerGatlinShovel = false;
         dryerCanSniperSpring = false;
         dryerCanRaySpartula = false;
+        drillRaySpatula = false;
 
         _drill = false;
         _hairDryer = false;

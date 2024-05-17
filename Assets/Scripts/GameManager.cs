@@ -10,6 +10,8 @@ using FMODUnity;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
+using UnityEngine.UI;
+using Button = UnityEngine.UI.Button;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,7 +46,15 @@ public class GameManager : MonoBehaviour
 
   public bool isAllowedToPause;
   public GameObject retryButton;
-  
+  public GameObject bodyBox;
+  public GameObject magazine;
+  public GameObject stock;
+  public GameObject barrel;
+  public GameObject bodyButton;
+  public GameObject magazineButton;
+  public GameObject stockButton;
+  public GameObject barrelButton;
+  public bool boxOpen;
 
 
   private void Awake()
@@ -55,7 +65,6 @@ public class GameManager : MonoBehaviour
   private void Start()
   {
     pauseMenu.GetComponent<PauseMenu>().musicEventInstance.setParameterByName("Parameter 1", 0);
-    pauseMenu.GetComponent<PauseMenu>().atmoEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     ShowInteractUI(false);
     isAllowedToPause = true;
     Cursor.visible = false;
@@ -70,6 +79,9 @@ public class GameManager : MonoBehaviour
 
   public void EndScreenValues()
   {
+    pauseMenu.GetComponent<PauseMenu>().atmoEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    Cursor.visible = true;
+    Cursor.lockState = CursorLockMode.Confined;
     pauseMenu.GetComponent<PauseMenu>().musicEventInstance.setParameterByName("Parameter 1", 1);
     isAllowedToPause = false;
     _gameOverScreen.SetActive(true);
@@ -107,6 +119,7 @@ public class GameManager : MonoBehaviour
 
   public void OpenMenu()
   {
+    boxOpen = true;
     Cursor.visible = true;
     Cursor.lockState = CursorLockMode.Confined;
     _playerInput.SwitchCurrentActionMap("UI");
@@ -114,6 +127,7 @@ public class GameManager : MonoBehaviour
   
   public void CloseMenu()
   {
+    boxOpen = false;
     Cursor.visible = false;
     Cursor.lockState = CursorLockMode.Locked;
     _playerInput.SwitchCurrentActionMap("Player");

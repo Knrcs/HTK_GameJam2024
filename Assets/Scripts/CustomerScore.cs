@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class CustomerScore : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class CustomerScore : MonoBehaviour
             maxScore -= scoreDrain * Time.deltaTime;
             if (timeTilMad <= 0)
             {
+                Destroy(_playerController.armbandddo.transform.GetChild(0).gameObject);
+                RuntimeManager.PlayOneShot("event:/SFX/UI/MainMenuHighlighted");
                 _playerController.health--;
                 _customerLogic._leaveTheStore = true;
                 timeTilMad = _timeTilMadDefault;

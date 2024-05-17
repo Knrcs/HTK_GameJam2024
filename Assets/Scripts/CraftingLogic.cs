@@ -68,6 +68,7 @@ public class CraftingLogic : MonoBehaviour
     public Sprite dryerGatlinShovelSprite;
     public Sprite dryerCanSniperSpringSprite;
     public Sprite dryerCanRaySpartulaSprite;
+    public Sprite drillRaySpatulaSprite;
 
     [Header("Item Library")] 
     public bool bananaCanRay;
@@ -81,6 +82,8 @@ public class CraftingLogic : MonoBehaviour
     public bool dryerGatlinShovel;
     public bool dryerCanSniperSpring;
     public bool dryerCanRaySpartula;
+    public bool drillRaySpatula;
+    
 
     public void ItemInCraftingTable()
     {
@@ -426,6 +429,14 @@ public class CraftingLogic : MonoBehaviour
                 LogItemCrafted("Drill Gatlin Shovel");
                 CraftingSuccessSound();
             }
+            else if (_drill && _raygun && _spartula)
+            {
+                pickThatBooty = true;
+                drillRaySpatula = true;
+                resultSpriteObject.sprite = drillRaySpatulaSprite;
+                ClearCraftingTable();
+                CraftingSuccessSound();
+            }
             else if (_drill && _sniperBarrel && _spring && _toaster)
             {
                 pickThatBooty = true;
@@ -576,6 +587,20 @@ public class CraftingLogic : MonoBehaviour
                 PickUpCraftingTable();
                 bananaCanGatlin = false;
                 _playerControler.bananaCanGatlin = true;
+            }
+
+            if (drillRaySpatula)
+            {
+                PickUpCraftingTable();
+                drillRaySpatula = false;
+                _playerControler.drillRaySpatula = true;
+            }
+
+            if (drillGatlinShovel)
+            {
+                PickUpCraftingTable();
+                drillGatlinShovel = false;
+                _playerControler.drillGatlinShovel = true;
             }
             if (drillToasterSniperSpring)
             {
