@@ -473,20 +473,20 @@ public class CraftingLogic : MonoBehaviour
                 LogItemCrafted("Dryer Gatlin Shovel");
                 CraftingSuccessSound();
             }
-            else if (_banana && _battery && _sniperBarrel)
-            {
-                pickThatBooty = true;
-                bananaBatterySniper = true;
-                resultSpriteObject.sprite = bananaBatterySniperSprite;
-                ClearCraftingTable();
-                LogItemCrafted("Banana Battery Sniper Rifle");
-                CraftingSuccessSound();
-            }
             else if (_banana && _battery && _sniperBarrel && _shovel)
             {
                 pickThatBooty = true;
                 bananaBatterySniperShovel = true;
                 resultSpriteObject.sprite = bananaBatterySniperShovelSprite;
+                ClearCraftingTable();
+                LogItemCrafted("Banana Battery Sniper Rifle");
+                CraftingSuccessSound();
+            }
+            else if (_banana && _battery && _sniperBarrel)
+            {
+                pickThatBooty = true;
+                bananaBatterySniper = true;
+                resultSpriteObject.sprite = bananaBatterySniperSprite;
                 ClearCraftingTable();
                 LogItemCrafted("Banana Battery Sniper Rifle");
                 CraftingSuccessSound();
@@ -570,69 +570,67 @@ public class CraftingLogic : MonoBehaviour
                 bananaCanRay = false;
                 _playerControler.bananaCanRay = true;
             }
-            if (bananaBatterySniperShovel)
+            else if (bananaBatterySniperShovel)
             {
                 PickUpCraftingTable();
                 bananaBatterySniperShovel = false;
                 _playerControler.bananaBatterySniperShovel = true;
             }
-            if (bananaBatterySniper)
+            else if (bananaBatterySniper)
             {
                 PickUpCraftingTable();
                 bananaBatterySniper = false;
                 _playerControler.bananaBatterySniper = true;
             }
-            if (bananaCanGatlin)
+            else if (bananaCanGatlin)
             {
                 PickUpCraftingTable();
                 bananaCanGatlin = false;
                 _playerControler.bananaCanGatlin = true;
             }
-
-            if (drillRaySpatula)
+            else if (drillRaySpatula)
             {
                 PickUpCraftingTable();
                 drillRaySpatula = false;
                 _playerControler.drillRaySpatula = true;
             }
-
-            if (drillGatlinShovel)
+            else if (drillGatlinShovel)
             {
                 PickUpCraftingTable();
                 drillGatlinShovel = false;
                 _playerControler.drillGatlinShovel = true;
             }
-            if (drillToasterSniperSpring)
+            else if (drillToasterSniperSpring)
             {
                 PickUpCraftingTable();
                 drillToasterSniperSpring = false;
                 _playerControler.drillToasterSniperSpring = true;
             }
-            if (drillCanRay)
+            else if (drillCanRay)
             {
                 PickUpCraftingTable();
                 drillCanRay = false;
                 _playerControler.drillCanRay = true;
             }
-            if (drillRayShovel)
+            else if (drillRayShovel)
             {
                 PickUpCraftingTable();
                 drillRayShovel = false;
                 _playerControler.drillRayShovel = true;
             }
-            if (dryerGatlinShovel)
+            else if (dryerGatlinShovel)
             {
                 PickUpCraftingTable();
                 dryerGatlinShovel = false;
                 _playerControler.dryerGatlinShovel = true;
             }
-            if (dryerCanSniperSpring)
+            else if (dryerCanSniperSpring)
             {
                 PickUpCraftingTable();
                 dryerCanSniperSpring = false;
                 _playerControler.dryerCanSniperSpring = true;
             }
-            if (dryerCanRaySpartula)
+            else if (dryerCanRaySpartula)
             {
                 PickUpCraftingTable();
                 dryerCanRaySpartula = false;

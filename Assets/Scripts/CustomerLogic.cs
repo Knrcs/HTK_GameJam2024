@@ -352,7 +352,7 @@ public class CustomerLogic : MonoBehaviour
 
                 if (bananaBatterySniper)
                 {
-                    _itemSpriteRenderer.sprite = bananaCanGatlinSprite;
+                    _itemSpriteRenderer.sprite = bananaBatterySniperSprite;
                 }
 
                 if (drillToasterSniperSpring)

@@ -36,7 +36,10 @@ public class CustomerScore : MonoBehaviour
             maxScore -= scoreDrain * Time.deltaTime;
             if (timeTilMad <= 0)
             {
-                Destroy(_playerController.armbandddo.transform.GetChild(0).gameObject);
+                if (GameManager.instance.isAllowedToPause)
+                {
+                    Destroy(_playerController.armbandddo.transform.GetChild(0).gameObject);
+                }
                 RuntimeManager.PlayOneShot("event:/SFX/UI/MainMenuHighlighted");
                 _playerController.health--;
                 _customerLogic._leaveTheStore = true;

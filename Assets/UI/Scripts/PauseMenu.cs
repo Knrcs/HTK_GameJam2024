@@ -41,6 +41,10 @@ public class PauseMenu : MonoBehaviour
     private InputAction _openClosePauseMenu;
     private float _idleTime = 0f;
     private float _cursorHideDelay = 3f;
+
+    public Sprite keyboardInteract;
+    public Sprite controllerInteract;
+    public GameObject interactUI;
     
     private void Start()
     {
@@ -57,8 +61,6 @@ public class PauseMenu : MonoBehaviour
         atmoEventInstance = RuntimeManager.CreateInstance(atmoEventReference);
         atmoEventInstance.start();
     }
-    
-    
     
     private void OnEnable()
     {
@@ -80,47 +82,44 @@ public class PauseMenu : MonoBehaviour
 
     private void Update()
     {
-        if (isPaused || !GameManager.instance.isAllowedToPause || GameManager.instance.boxOpen)
+        if (!controllerActive && Gamepad.current != null && (Gamepad.current.leftStick.ReadValue() != Vector2.zero || Gamepad.current.rightStick.ReadValue() != Vector2.zero))
         {
-            if (!controllerActive && Gamepad.current != null && (Gamepad.current.leftStick.ReadValue() != Vector2.zero || Gamepad.current.rightStick.ReadValue() != Vector2.zero))
-            {
                 keyboardActive = false;
                 mouseActive = false;
                 controllerActive = true;
-            }
+                interactUI.GetComponent<SpriteRenderer>().sprite = controllerInteract;
+        }
 
-            if (!mouseActive && Mouse.current != null && Mouse.current.delta.ReadValue() != Vector2.zero)
-            {
+        if (!mouseActive && Mouse.current != null && Mouse.current.delta.ReadValue() != Vector2.zero)
+        {
                 keyboardActive = false;
                 mouseActive = true;
                 controllerActive = false;
-            }
+                interactUI.GetComponent<SpriteRenderer>().sprite = keyboardInteract;
+        }
 
-            if (!keyboardActive && Keyboard.current != null && (Keyboard.current.anyKey.isPressed))
-            {
+        if (!keyboardActive && Keyboard.current != null && (Keyboard.current.anyKey.isPressed))
+        {
                 keyboardActive = true;
                 mouseActive = false;
                 controllerActive = false;
-            }
-        
-            if (mouseActive)
-            {
-                ShowCursor();
-                _idleTime = 0f;
-            }
-            else
-            {
-                _idleTime += Time.unscaledDeltaTime;
-                if (_idleTime >= _cursorHideDelay) 
-                {
-                    HideCursor();
-                }
-            }
+                interactUI.GetComponent<SpriteRenderer>().sprite = keyboardInteract;
+        }
 
-            if (keyboardActive || controllerActive)
-            {
-                HideCursor();
-            }
+        if (isPaused || GameManager.instance.boxOpen)
+        {
+            
+            Debug.Log("ispaused oder box open");
+                if (mouseActive)
+                {
+                    ShowCursor();
+                }
+
+                if (keyboardActive || controllerActive)
+                {
+                    Debug.Log("führt hier hide cursor aus");
+                    HideCursor();
+                }   
         }
         
     }
@@ -152,6 +151,7 @@ public class PauseMenu : MonoBehaviour
             }
             else if (pauseMenu.activeSelf)
             {
+                Debug.Log("Pause menu is active and should select start");
                 startButton.Select();
             }
             else if (GameManager.instance.stock.activeSelf)
@@ -170,9 +170,11 @@ public class PauseMenu : MonoBehaviour
             {
                 GameManager.instance.magazineButton.GetComponent<Button>().Select();
             }
-            
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
     }
     
@@ -199,7 +201,7 @@ public class PauseMenu : MonoBehaviour
                 _content.SetActive(false);
                 optionsMenu.SetActive(false);
                 FMODUnity.RuntimeManager.StudioSystem.setParameterByName("Pause", 1);
-                if (GameManager.instance.stock.activeSelf || GameManager.instance.barrel.activeSelf || GameManager.instance.bodyBox.activeSelf || GameManager.instance.magazine.activeSelf)
+                if (!GameManager.instance.stock.activeSelf || !GameManager.instance.barrel.activeSelf || !GameManager.instance.bodyBox.activeSelf || !GameManager.instance.magazine.activeSelf)
                 {
                     if (controllerActive || keyboardActive)
                     {
